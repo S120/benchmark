@@ -707,11 +707,11 @@
 
 <!-- K and C Credit Obtained -->
 
-<bean id="microCreditObtainedKComputer" class="jmab.report.MicroFirmsCreditObtainedComputer">
+<bean id="microCreditObtainedKComputer" class="jmab.report.MicroAgentsCreditObtainedComputer">
 	<property name="populationId"><util:constant static-field="benchmark.StaticValues.CAPITALFIRMS_ID"/></property>
     <property name="idLoanSM"><util:constant static-field="benchmark.StaticValues.SM_LOAN"/></property>
 </bean>
-<bean id="microCreditObtainedCComputer" class="jmab.report.MicroFirmsCreditObtainedComputer">
+<bean id="microCreditObtainedCComputer" class="jmab.report.MicroAgentsCreditObtainedComputer">
 	<property name="populationId"><util:constant static-field="benchmark.StaticValues.CONSUMPTIONFIRMS_ID"/></property>
 	<property name="idLoanSM"><util:constant static-field="benchmark.StaticValues.SM_LOAN"/></property>
 </bean>
@@ -2751,7 +2751,7 @@
 
 <!--BANKS SPECIFIC INTEREST LOANS-->
 
-<bean id="banksSpecificInterestComputer" class="benchmark.report.MicroBankSpecificInterest">
+<bean id="banksSpecificInterestComputer" class="jmab.report.MicroBankSpecificInterest">
 	<property name="banksId"><util:constant static-field="benchmark.StaticValues.BANKS_ID"/></property>
 </bean>
 
@@ -3973,7 +3973,7 @@
 
 <!--CONSUMPTION FIRMS REMAINING CREDIT -->
 
-<bean id="cFirmsConsCredComputer" class="jmab.report.MicroFirmsConstrainedCreditComputer">
+<bean id="cFirmsConsCredComputer" class="jmab.report.MicroAgentsConstrainedCreditComputer">
 	<property name="populationId"><util:constant static-field="benchmark.StaticValues.CONSUMPTIONFIRMS_ID"/></property>
 	<property name="idLoanSM"><util:constant static-field="benchmark.StaticValues.SM_LOAN"/></property>
 </bean>
@@ -4024,7 +4024,7 @@
 
 <!--CAPITAL FIRMS REMAINING CREDIT -->
 
-<bean id="kFirmsConsCredComputer" class="jmab.report.MicroFirmsConstrainedCreditComputer">
+<bean id="kFirmsConsCredComputer" class="jmab.report.MicroAgentsConstrainedCreditComputer">
 	<property name="populationId"><util:constant static-field="benchmark.StaticValues.CAPITALFIRMS_ID"/></property>
 	<property name="idLoanSM"><util:constant static-field="benchmark.StaticValues.SM_LOAN"/></property>
 </bean>
