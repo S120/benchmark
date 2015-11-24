@@ -196,8 +196,9 @@
 
 <!-- loan Average interest Report -->
 <bean id="loanAvInterestComputer" class="jmab.report.AverageCreditInterestRateComputer">
-	<property name="banksId"><util:constant static-field="benchmark.StaticValues.BANKS_ID" /></property>
+	<property name="populationId"><util:constant static-field="benchmark.StaticValues.BANKS_ID" /></property>
 	<property name="stockId"><util:constant static-field="benchmark.StaticValues.SM_LOAN" /></property>
+	<property name="demand" value="false"/>
 </bean>
 
 <bean id="loanAvInterestEventReport" class="jmab.report.MacroSimEventReport">
