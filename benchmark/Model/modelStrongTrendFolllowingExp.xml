@@ -78,102 +78,116 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 				<ref bean="bondMarket2Tic" />
 				<ref bean="reservesDemandBaselTic" />
 				<ref bean="reservesMarketBaselTic" />
+				<!-- 
+				<ref bean="microLoansKfirmsReportTic" />
+				<ref bean="microLoansCfirmsReportTic" /> 
+				<ref bean="microRealConsReportTic" /> 
+				<ref bean="microNominalConsReportTic" /> 
+				<ref bean="microRealDesInvReportTic" />
+				<ref bean="microNominalInvReportTic" /> 
+				<ref bean="microRealCInventReportTic" />
+				<ref bean="microRealKInventReportTic" /> 
+				<ref bean="microOutputKfirmsReportTic" />
+				<ref bean="microOutputCfirmsReportTic" />
+				<ref bean="microCreditObtainedKfirmsReportTic" />
+				<ref bean="microCreditObtainedCfirmsReportTic" /> 
+				<ref bean="realCDesOutputReportTic" />
+				<ref bean="realKDesOutputReportTic" /> 
+				<ref bean="cEmployeeReportTic" />
+				<ref bean="kEmployeeReportTic" /> 
+				<ref bean="banksProfitsReportTic" />
+				<ref bean="cFirmsProfitsReportTic" />
+				<ref bean="kFirmsProfitsReportTic" /> 
+				<ref bean="hhWageReportTic" />
+				<ref bean="hhNetIncomeReportTic" />
+				<ref bean="cFirmsPricesReportTic" />
+				<ref bean="kFirmsPricesReportTic" /> 
+				<ref bean="microRealDesConsReportTic" /> 
+				<ref bean="cOperatingCashFlowReportTic" />
+				<ref bean="kOperatingCashFlowReportTic" /> 
+				<ref bean="cExpAvVarCostsReportTic" />
+				<ref bean="kExpAvVarCostsReportTic" /> 
+				<ref bean="cFirmsIRReportTic" />
+				<ref bean="kFirmsIRReportTic" />
+				<ref bean="hhIRReportTic" /> 
+				<ref bean="cFirmsIPReportTic" />
+				<ref bean="kFirmsIPReportTic" /> 
+				<ref bean="cFirmsDebtServiceReportTic" />
+				<ref bean="kFirmsDebtServiceReportTic" /> 
+				<ref bean="cFirmsWageBillReportTic" />
+				<ref bean="kFirmsWageBillReportTic" />
+				<ref bean="cFirmsAggregateDebtReportTic" />
+				<ref bean="kFirmsAggregateDebtReportTic" /> 
+				<ref bean="cFirmsLevReportTic" />
+				<ref bean="kFirmsLevReportTic" /> 
+				<ref bean="kFirmsDividendsReportTic" />
+				<ref bean="cFirmsDividendsReportTic" /> 
+				<ref bean="banksDividendsReportTic" /> 
+				<ref bean="bMaxExposureReportTic" /> 
+				<ref bean="banksSpecificInterestReportTic" />	
+				<ref bean="banksDepositInterestReportTic" /> 
+				<ref bean="banksTaxesReportTic" />	
+				<ref bean="cFirmsTaxesReportTic" />
+				<ref bean="hhTaxesReportTic" />	 
+				<ref bean="kFirmsTaxesReportTic" /> 
+				<ref bean="hhDepositsReportTic" />	
+				<ref bean="banksDepositsReportTic" /> 
+				<ref bean="govWageBillReportTic" />
+				<ref bean="govDoleReportTic" />
+				<ref bean="govInterestsBondsReportTic" />
+				<ref bean="microCGrowthReportTic" />
+				<ref bean="govCBProfitsReportTic" /> 
+				<ref bean="TFMReportTic" /> 
+				-->
 				<ref bean="nominalGDPReportTic" />
 				<ref bean="nominalInvReportTic" />
 				<ref bean="unemploymentReportTic" />
-				<ref bean="microLoansKfirmsReportTic" />
-				<ref bean="microLoansCfirmsReportTic" />
 				<ref bean="microBankCreditReportTic" />
 				<ref bean="microCreditDegreeReportTic" />
-				<ref bean="microRealConsReportTic" />
-				<ref bean="microNominalConsReportTic" />
 				<ref bean="microRealInvReportTic" />
-				<ref bean="microRealDesInvReportTic" />
-				<ref bean="microNominalInvReportTic" />
-				<ref bean="microRealCInventReportTic" />
-				<ref bean="microRealKInventReportTic" />
-				<ref bean="microCGrowthReportTic" />
 				<ref bean="microRealSalesKfirmsReportTic" />
 				<ref bean="microRealSalesCfirmsReportTic" />
 				<ref bean="microNominalSalesKfirmsReportTic" />
 				<ref bean="microNominalSalesCfirmsReportTic" />
-				<ref bean="microOutputKfirmsReportTic" />
-				<ref bean="microOutputCfirmsReportTic" />
-				<ref bean="microCreditObtainedKfirmsReportTic" />
-				<ref bean="microCreditObtainedCfirmsReportTic" />
 				<ref bean="aggHHBSReportTic" />
 				<ref bean="aggCFBSReportTic" />
 				<ref bean="aggKFBSReportTic" />
 				<ref bean="aggBBSReportTic" />
 				<ref bean="aggGBSReportTic" />
 				<ref bean="aggCBBSReportTic" />
-				<ref bean="realCDesOutputReportTic" />
-				<ref bean="realKDesOutputReportTic" />
-				<ref bean="cEmployeeReportTic" />
-				<ref bean="kEmployeeReportTic" />
-				<ref bean="banksProfitsReportTic" />
-				<ref bean="cFirmsProfitsReportTic" />
-				<ref bean="kFirmsProfitsReportTic" />
-				<ref bean="hhWageReportTic" />
-				<ref bean="hhNetIncomeReportTic" />
-				<ref bean="cFirmsPricesReportTic" />
-				<ref bean="kFirmsPricesReportTic" />
-				<ref bean="microRealDesConsReportTic" />
-				<ref bean="cOperatingCashFlowReportTic" />
-				<ref bean="kOperatingCashFlowReportTic" />
-				<ref bean="cExpAvVarCostsReportTic" />
-				<ref bean="kExpAvVarCostsReportTic" />
+				<ref bean="cAvPriceReportTic" />
+				<ref bean="kAvPriceReportTic" />
+				<ref bean="loanAvInterestReportTic" />
+				<ref bean="depAvInterestReportTic" />
+				<ref bean="avWageReportTic" />
+				<ref bean="avNetIncomeReportTic" />
 				<ref bean="cFirmsBankruptcyReportTic" />
 				<ref bean="kFirmsBankruptcyReportTic" />
 				<ref bean="banksBankruptcyReportTic" />
-				<ref bean="cFirmsIRReportTic" />
-				<ref bean="kFirmsIRReportTic" />
-				<ref bean="hhIRReportTic" />
-				<ref bean="cFirmsIPReportTic" />
-				<ref bean="kFirmsIPReportTic" />
-				<ref bean="cFirmsDebtServiceReportTic" />
-				<ref bean="kFirmsDebtServiceReportTic" />
-				<ref bean="cFirmsWageBillReportTic" />
-				<ref bean="kFirmsWageBillReportTic" />
-				<ref bean="cFirmsAggregateDebtReportTic" />
-				<ref bean="kFirmsAggregateDebtReportTic" />
-				<ref bean="cFirmsLevReportTic" />
-				<ref bean="kFirmsLevReportTic" />
-				<ref bean="cFirmsConsCredReportTic" />
-				<ref bean="kFirmsConsCredReportTic" />
-				<ref bean="kFirmsDividendsReportTic" />
-				<ref bean="cFirmsDividendsReportTic" />
-				<ref bean="banksDividendsReportTic" />
-				<ref bean="bMaxExposureReportTic" />
+				<!-- 
+					<ref bean="cFirmsConsCredReportTic" />
+					<ref bean="kFirmsConsCredReportTic" /> 
+				-->
+				<ref bean="kAggConsCredReportTic" />
+				<ref bean="cAggConsCredReportTic" />
 				<ref bean="cCapacityReportTic" />	
 				<ref bean="cCapacityUtilizationReportTic" />
-				<ref bean="banksSpecificInterestReportTic" />	
-				<ref bean="banksDepositInterestReportTic" />
 				<ref bean="banksCRReportTic" />	
 				<ref bean="banksLRReportTic" />
 				<ref bean="banksLossReportTic" />
-				<ref bean="banksTaxesReportTic" />	
-				<ref bean="cFirmsTaxesReportTic" />
-				<ref bean="hhTaxesReportTic" />	
-				<ref bean="kFirmsTaxesReportTic" />
-				<ref bean="hhDepositsReportTic" />	
-				<ref bean="banksDepositsReportTic" />
-				<ref bean="govWageBillReportTic" />
-				<ref bean="govDoleReportTic" />
-				<ref bean="govInterestsBondsReportTic" />
-				<ref bean="govCBProfitsReportTic" />
 				<ref bean="banksBailoutCostReportTic" />
 				<ref bean="cFirmsBailoutCostReportTic" />
 				<ref bean="kFirmsBailoutCostReportTic" />
-				<ref bean="TFMReportTic" />
-				<ref bean="BSNetworkReportTic" />
+				<ref bean="BSNetworkReportTic" /> 
 				<ref bean="populationHandlerTic" />
 				<ref bean="updateExpectationsTic" />
-				<ref bean="serializationTic" />
+				<!-- 
+					<ref bean="serializationTic" /> 
+				-->
 			</list>
 		</property>
 		<property name="simulationController" ref="simulationController" />
-		<property name="maximumRounds" value="1000" />
+		<property name="maximumRounds" value="400" />
 		<property name="population" ref="macroPopulation" />
 		<property name="agentInitialiser" ref="sfcAgentsInitialiser" />
 		<property name="handler" ref="populationHandler" />
@@ -304,7 +318,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="scheduler" ref="simulationController"></property>
 		<property name="ticId"><util:constant static-field="benchmark.StaticValues.TIC_CREDITMARKET" /></property>
 		<property name="initialiser" ref="creditMarketInitialiser" />
-		<property name="nbRuns" value="2"></property>
+		<property name="nbRuns" value="1"></property>
 	</bean>
 
 	<bean id="creditMarketInitialiser" class="jmab.init.RandomMarketInitialiser"
@@ -653,6 +667,62 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	<property name="computer" ref="nominalInvComputer"></property>
 	</bean>
 	
+	<bean id="cAvPriceReportTic" class="jmab.events.MacroVariableTicEvent">
+	<property name="tic"><util:constant static-field="benchmark.StaticValues.TIC_AVCPRICEREPORT" /></property>
+	<property name="variableId"><util:constant static-field="benchmark.StaticValues.AVCPRICEREPORT_ID" /></property>
+	<property name="variableName" value="C Average Price"></property>
+	<property name="computer" ref="cAvPriceComputer"></property>
+	</bean>
+	
+	<bean id="kAvPriceReportTic" class="jmab.events.MacroVariableTicEvent">
+	<property name="tic"><util:constant static-field="benchmark.StaticValues.TIC_AVKPRICEREPORT" /></property>
+	<property name="variableId"><util:constant static-field="benchmark.StaticValues.AVKPRICEREPORT_ID" /></property>
+	<property name="variableName" value="K Average Price"></property>
+	<property name="computer" ref="kAvPriceComputer"></property>
+	</bean>
+	
+	<bean id="loanAvInterestReportTic" class="jmab.events.MacroVariableTicEvent">
+	<property name="tic"><util:constant static-field="benchmark.StaticValues.TIC_AVLOANINTERESTREPORT" /></property>
+	<property name="variableId"><util:constant static-field="benchmark.StaticValues.AVLOANINTERESTREPORT_ID" /></property>
+	<property name="variableName" value="loanAvInterest"></property>
+	<property name="computer" ref="loanAvInterestComputer"></property>
+	</bean>
+	
+	<bean id="depAvInterestReportTic" class="jmab.events.MacroVariableTicEvent">
+	<property name="tic"><util:constant static-field="benchmark.StaticValues.TIC_AVDEPINTERESTREPORT" /></property>
+	<property name="variableId"><util:constant static-field="benchmark.StaticValues.AVDEPINTERESTREPORT_ID" /></property>
+	<property name="variableName" value="depAvInterest"></property>
+	<property name="computer" ref="depAvInterestComputer"></property>
+	</bean>
+	
+	<bean id="avWageReportTic" class="jmab.events.MacroVariableTicEvent">
+	<property name="tic"><util:constant static-field="benchmark.StaticValues.TIC_AVWAGEREPORT" /></property>
+	<property name="variableId"><util:constant static-field="benchmark.StaticValues.AVWAGEREPORT_ID" /></property>
+	<property name="variableName" value="avWage"></property>
+	<property name="computer" ref="avWageComputer"></property>
+	</bean>
+	
+	<bean id="kAggConsCredReportTic" class="jmab.events.MacroVariableTicEvent">
+	<property name="tic"><util:constant static-field="benchmark.StaticValues.TIC_KAGGCONSCREDITREPORT" /></property>
+	<property name="variableId"><util:constant static-field="benchmark.StaticValues.KAGGCONSCREDITREPORT_ID" /></property>
+	<property name="variableName" value="kAggConsCredit"></property>
+	<property name="computer" ref="kAggConsCreditComputer"></property>
+	</bean>
+	
+	<bean id="cAggConsCredReportTic" class="jmab.events.MacroVariableTicEvent">
+	<property name="tic"><util:constant static-field="benchmark.StaticValues.TIC_CAGGCONSCREDITREPORT" /></property>
+	<property name="variableId"><util:constant static-field="benchmark.StaticValues.CAGGCONSCREDITREPORT_ID" /></property>
+	<property name="variableName" value="cAggConsCredit"></property>
+	<property name="computer" ref="cAggConsCreditComputer"></property>
+	</bean>
+	
+	<bean id="avNetIncomeReportTic" class="jmab.events.MacroVariableTicEvent">
+	<property name="tic"><util:constant static-field="benchmark.StaticValues.TIC_AVNETINCOMEREPORT" /></property>
+	<property name="variableId"><util:constant static-field="benchmark.StaticValues.AVNETINCOMEREPORT_ID" /></property>
+	<property name="variableName" value="avNetIncome"></property>
+	<property name="computer" ref="avNetIncomeComputer"></property>
+	</bean>
+	
 	<bean id="unemploymentReportTic" class="jmab.events.MacroVariableTicEvent">
 	<property name="tic"><util:constant static-field="benchmark.StaticValues.TIC_UNEMPLOYMENTREPORT" /></property>
 	<property name="variableId"><util:constant static-field="benchmark.StaticValues.UNEMPLOYMENTREPORT_ID" /></property>
@@ -943,6 +1013,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	<property name="variableName" value="Capital Firms Employees Number"></property>
 	<property name="computer" ref="kEmployeeComputer"></property>
 	</bean>
+	
 		
 	<bean id="banksProfitsReportTic" class="jmab.events.MicroMultiVariablesTicEvent">
 	<property name="tic"><util:constant static-field="benchmark.StaticValues.TIC_BANKSPROFITSREPORT" /></property>
@@ -1476,14 +1547,14 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="capitalLaborRatio" value="6.4"/>
 		<property name="shareOfExpIncomeAsDeposit" value="1"/>
 		<property name="minWageDiscount" value="1"/>
-		<property name="turnoverLabor" value="0.3"/>
+		<property name="turnoverLabor" ref="turnoverVal"/>
 	</bean>
 	
-	<bean id="expSales" class="jmab.expectations.SimpleAdaptiveExpectation"
+	<bean id="expSales" class="jmab.expectations.TrendFollowingExpectation"
 		scope="prototype">
 		<property name="numberPeriod" value="4"/>
 		<property name="nbVariables" value="1"/>
-		<property name="adaptiveParam" value="0.25"/>
+		<property name="adaptiveParam" value="1.3"/>
 		<property name="weights">
 			<array>
 				<array>
@@ -1800,14 +1871,22 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	
 	<bean id="capitalTaxesStrategy" scope="prototype" parent="strategy"
 	class="jmab.strategies.ProfitsWealthTaxStrategy">
-	<property name="profitTaxRate" value="0.18" />
+	<property name="profitTaxRate" ref="profitTaxVal" />
 	<property name="wealthTaxRate" value="0"></property>
 	<property name="depositId"><util:constant static-field="benchmark.StaticValues.SM_DEP" /> </property>	
 	</bean>
 	
+	<bean id="profitTaxVal" scope="simulation" class="net.sourceforge.jabm.util.MutableDoubleWrapper">
+		<constructor-arg value="0.18" />
+	</bean>
+	
 	<bean id="capitalBankruptcyStrategy" scope="prototype" parent="strategy"
 	class="benchmark.strategies.FirmBankruptcyFireSales">
-	<property name="haircut" value="0"></property>
+	<property name="haircut" ref="haircutVal"/>
+	</bean>
+	
+	<bean id="haircutVal" scope="simulation" class="net.sourceforge.jabm.util.MutableDoubleWrapper">
+		<constructor-arg value="0.5" />
 	</bean>
 	
 	<bean id="capitalDividendsStrategy" scope="prototype" parent="strategy"
@@ -1930,10 +2009,14 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="productionStockId"><util:constant static-field="benchmark.StaticValues.SM_CONSGOOD"/> </property>
 		<property name="loanLength" value="20"/>
 		<property name="loanAmortizationType" value="0" />
-		<property name="turnoverLabor" value="0.3" /> 
+		<property name="turnoverLabor" ref="turnoverVal" /> 
 		<property name="shareOfExpIncomeAsDeposit" value="1" />
 		<property name="minWageDiscount" value="1" />
 		
+	</bean>
+	
+	<bean id="turnoverVal" scope="simulation" class="net.sourceforge.jabm.util.MutableDoubleWrapper">
+		<constructor-arg value="0.05" />
 	</bean>
 	
 	<bean id="consumptionMacroStrategy" scope="prototype"
@@ -2086,14 +2169,14 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	
 	<bean id="consumptionTaxesStrategy" scope="prototype" parent="strategy"
 	class="jmab.strategies.ProfitsWealthTaxStrategy">
-	<property name="profitTaxRate" value="0.18" />
+	<property name="profitTaxRate" ref="profitTaxVal" />
 	<property name="wealthTaxRate" value="0"></property>
 	<property name="depositId"><util:constant static-field="benchmark.StaticValues.SM_DEP" /> </property>	
 	</bean>
 	
 	<bean id="consumptionBankruptcyStrategy" scope="prototype" parent="strategy"
 	class="benchmark.strategies.FirmBankruptcyFireSales">
-	<property name="haircut" value="0"></property>
+	<property name="haircut" ref="haircutVal" />
 	</bean>
 	
 	<bean id="consumptionDividendsStrategy" scope="prototype" parent="strategy"
@@ -2200,7 +2283,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		</map>
 		</property>
 		<property name="numberMarkets" value="7" />
-		<property name="riskAversionC" value="3.922445" />
+		<property name="riskAversionC" value="3.922445" /> 
 		<property name="riskAversionK" value="21.513347" />
 		<property name="bankInterestRate" value="0.0075" />
 		<property name="numberStocks" value="8" />
@@ -2487,7 +2570,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		class="jmab.strategies.ExpectedReturnCreditSupply">	
 		<property name="loansId"><util:constant static-field="benchmark.StaticValues.SM_LOAN" /> </property>
 		<property name="capitalId"><util:constant static-field="benchmark.StaticValues.SM_CAPGOOD" /> </property>
-		<property name="haircut" value="0"/>
+		<property name="haircut" ref="haircutVal"/>
 		<property name="binaryDecision" value="false"/>
 		<property name="defaultComputer" ref="loanDefaultComputer"/>
 	</bean>
@@ -2511,7 +2594,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	
 	<bean id="banksTaxesStrategy" scope="prototype" parent="strategy"
 	class="jmab.strategies.ProfitsWealthTaxStrategy">
-	<property name="profitTaxRate" value="0.18" />
+	<property name="profitTaxRate" ref="profitTaxVal" />
 	<property name="wealthTaxRate" value="0"></property>
 	<property name="depositId"><util:constant static-field="benchmark.StaticValues.SM_RESERVES" /> </property>	
 	</bean>
@@ -2787,7 +2870,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="bondInterestRate" value="0.0025" />
 		<property name="bondPrice" value="1.0" />
 		<property name="fixedLaborDemand" value="1360" />
-		<property name="turnoverLabor" value="0.3" /> 
+		<property name="turnoverLabor" ref="turnoverVal" /> 
 		<property name="unemploymentBenefit" value="0.4" />
 		<property name="uComputer" ref="unemploymentComputer"/>
 		<property name="taxedPopulations">

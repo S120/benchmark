@@ -45,7 +45,7 @@
 			</map>
 		</property>
 	<property name="priceIndexProducerId"><util:constant static-field="benchmark.StaticValues.CONSUMPTIONFIRMS_ID" /></property>
-	<property name="priceGoodId"><util:constant static-field="benchmark.StaticValues.SM_CAPGOOD" /></property>
+	<property name="priceGoodId"><util:constant static-field="benchmark.StaticValues.SM_CONSGOOD" /></property>
 	<property name="realSaleId"><util:constant static-field="benchmark.StaticValues.LAG_REALSALES" /></property>
 </bean>
 

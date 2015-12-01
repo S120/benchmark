@@ -8,7 +8,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<import resource="modelBaselineMonteCarlo4000.xml"/>
+	<import resource="modelBaselineMonteCarlo.xml"/>
 	<import resource="reports.xml" />
 	
 	<bean id="simulationController" 
