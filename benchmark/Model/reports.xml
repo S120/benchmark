@@ -148,6 +148,7 @@
 <bean id="kAvPriceComputer" class="jmab.report.AveragePriceComputer">
 	<property name="populationId"><util:constant static-field="benchmark.StaticValues.CAPITALFIRMS_ID" /></property>
 	<property name="goodId"><util:constant static-field="benchmark.StaticValues.SM_CAPGOOD" /></property>
+    <property name="salesId"><util:constant static-field="benchmark.StaticValues.LAG_REALSALES" /></property>
 </bean>
 
 <bean id="kAvPriceEventReport" class="jmab.report.MacroSimEventReport">

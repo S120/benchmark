@@ -598,6 +598,9 @@ LaborDemander, DepositDemander, PriceSetterWithTargets, ProfitsTaxPayer, Finance
 		double[] sales = new double[1];
 		double[] rSales = new double[1];
 		double realSales = (production-inv+lInv); 
+		if (Double.isNaN(realSales)|| Double.isNaN(this.getPrice())){
+			System.out.println("Error");
+		}
 		sales[0] = realSales*this.getPrice();
 		rSales[0] = realSales;
 		this.getExpectation(StaticValues.EXPECTATIONS_NOMINALSALES).addObservation(sales);
@@ -835,12 +838,20 @@ LaborDemander, DepositDemander, PriceSetterWithTargets, ProfitsTaxPayer, Finance
 			double expectedAverageCosts=(amortisationCosts+expectedVariableCosts)/this.getDesiredOutput();
 			//*/
 			double expectedVariableCosts=this.getExpectation(StaticValues.EXPECTATIONS_WAGES).getExpectation()*this.getRequiredWorkers();
+		    if (Double.isNaN(expectedVariableCosts)){
+		    	System.out.println("Error");
+		    }
 			expectedAverageCosts=(expectedVariableCosts)/this.getDesiredOutput();
+			
+		
 		}else{
 			//We compute how many workers were needed to produce to amount of inventories left as in the getRequiredWorkersMethod, but using the quantity of 
 			//inventories instead of the desiredOutput
 			//First we order capital vintages according to their productivity
 			List<Item> currentCapitalStock = this.getItemsStockMatrix(true, StaticValues.SM_CAPGOOD);
+			//if (currentCapitalStock.size()==0){
+				//System.out.println("Error");
+			//}
 			TreeMap<Double,ArrayList<CapitalGood>> orderedCapital = new TreeMap<Double,ArrayList<CapitalGood>>();
 			for (Item item:currentCapitalStock){
 				CapitalGood capital=(CapitalGood)item;
@@ -857,6 +868,10 @@ LaborDemander, DepositDemander, PriceSetterWithTargets, ProfitsTaxPayer, Finance
 			//Then we calculate the number of workers need to produce the quantity of inventories left
 			//as they first employed the more productive vintages
 			ConsumptionGood inventoriesLeft= (ConsumptionGood) this.getItemStockMatrix(true, StaticValues.SM_CONSGOOD);
+			if (inventoriesLeft.getQuantity()==0){
+				expectedAverageCosts=0;
+			}
+			else{
 			double residualOutput=inventoriesLeft.getQuantity();
 			double requiredWorkers=0;
 			for (Double key:orderedCapital.descendingKeySet()){
@@ -873,9 +888,14 @@ LaborDemander, DepositDemander, PriceSetterWithTargets, ProfitsTaxPayer, Finance
 				}
 			}
 			double expectedVariableCosts=this.getExpectation(StaticValues.EXPECTATIONS_WAGES).getExpectation()*requiredWorkers;
+			//if (Double.isNaN(expectedVariableCosts)){
+				//System.out.println("Error");
+			//}
 			expectedAverageCosts=(expectedVariableCosts)/inventoriesLeft.getQuantity();
 		}
+		}
 		expectedVariableCosts=expectedAverageCosts;
+		
 		return expectedAverageCosts;
 		
 	}

@@ -1573,11 +1573,11 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
     </property>
 	</bean>
 	
-	<bean id="expRSales" class="jmab.expectations.SimpleAdaptiveExpectation"
+	<bean id="expRSales" class="jmab.expectations.TrendFollowingExpectation"
 		scope="prototype">
 		<property name="numberPeriod" value="4"/>
 		<property name="nbVariables" value="1"/>
-		<property name="adaptiveParam" value="0.25"/>
+		<property name="adaptiveParam" value="1.3"/>
 		<property name="weights">
 			<array>
 				<array>
@@ -1596,11 +1596,11 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
     </property>
 	</bean>
 	
-	<bean id="expWages" class="jmab.expectations.SimpleAdaptiveExpectation"
+	<bean id="expWages" class="jmab.expectations.TrendFollowingExpectation"
 		scope="prototype">
 		<property name="numberPeriod" value="4"/>
 		<property name="nbVariables" value="1"/>
-		<property name="adaptiveParam" value="0.25"/>
+		<property name="adaptiveParam" value="1.3"/>
 		<property name="weights">
 			<array>
 				<array>
@@ -2299,11 +2299,11 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="depositInterestRate" value="0.0025" />
 	</bean>
 	
-	<bean id="expDeposits" class="jmab.expectations.SimpleAdaptiveExpectation"
+	<bean id="expDeposits" class="jmab.expectations.TrendFollowingExpectation"
 		scope="prototype">
 		<property name="numberPeriod" value="4"/>
 		<property name="nbVariables" value="1"/>
-		<property name="adaptiveParam" value="0.25"/>
+		<property name="adaptiveParam" value="1.3"/>
 		<property name="weights">
 			<array>
 				<array>
@@ -2703,11 +2703,11 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="employmentWageLag" value="4" />
 	</bean>
 	
-		<bean id="expConsumptionPrice" class="jmab.expectations.SimpleAdaptiveExpectation"
+		<bean id="expConsumptionPrice" class="jmab.expectations.TrendFollowingExpectation"
 		scope="prototype">
 		<property name="numberPeriod" value="4"/>
 		<property name="nbVariables" value="1"/>
-		<property name="adaptiveParam" value="0.25"/>
+		<property name="adaptiveParam" value="1.3"/>
 		<property name="weights">
 			<array>
 				<array>

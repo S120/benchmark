@@ -1574,47 +1574,49 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
     </property>
 	</bean>
 	
-	<bean id="expRSales" class="jmab.expectations.SimpleAdaptiveExpectation"
+	<bean id="expRSales" class="jmab.expectations.AnchoringAndAdjustmentExpectation"
 		scope="prototype">
 		<property name="numberPeriod" value="4"/>
 		<property name="nbVariables" value="1"/>
-		<property name="adaptiveParam" value="0.25"/>
+		<property name="anchorParameter" value="0.5"/>
+		<property name="adjustmentParameter" value="1.0"/>
 		<property name="weights">
 			<array>
 				<array>
 					<value>1.0</value>
 				</array>
 				<array>
-					<value>0.0</value>
+					<value>1.0</value>
 				</array>
 				<array>
-					<value>0.0</value>
+					<value>1.0</value>
 				</array>
 				<array>
-					<value>0.0</value>
+					<value>1.0</value>
 				</array>
         </array>
     </property>
 	</bean>
 	
-	<bean id="expWages" class="jmab.expectations.SimpleAdaptiveExpectation"
+	<bean id="expWages" class="jmab.expectations.AnchoringAndAdjustmentExpectation"
 		scope="prototype">
 		<property name="numberPeriod" value="4"/>
 		<property name="nbVariables" value="1"/>
-		<property name="adaptiveParam" value="0.25"/>
+		<property name="anchorParameter" value="0.5"/>
+		<property name="adjustmentParameter" value="1.0"/>
 		<property name="weights">
 			<array>
 				<array>
 					<value>1.0</value>
 				</array>
 				<array>
-					<value>0.0</value>
+					<value>1.0</value>
 				</array>
 				<array>
-					<value>0.0</value>
+					<value>1.0</value>
 				</array>
 				<array>
-					<value>0.0</value>
+					<value>1.0</value>
 				</array>
         </array>
     </property>
@@ -2300,24 +2302,25 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="depositInterestRate" value="0.0025" />
 	</bean>
 	
-	<bean id="expDeposits" class="jmab.expectations.SimpleAdaptiveExpectation"
+	<bean id="expDeposits" class="jmab.expectations.AnchoringAndAdjustmentExpectation"
 		scope="prototype">
 		<property name="numberPeriod" value="4"/>
 		<property name="nbVariables" value="1"/>
-		<property name="adaptiveParam" value="0.25"/>
+		<property name="anchorParameter" value="0.5"/>
+		<property name="adjustmentParameter" value="1.0"/>
 		<property name="weights">
 			<array>
 				<array>
 					<value>1.0</value>
 				</array>
 				<array>
-					<value>0.0</value>
+					<value>1.0</value>
 				</array>
 				<array>
-					<value>0.0</value>
+					<value>1.0</value>
 				</array>
 				<array>
-					<value>0.0</value>
+					<value>1.0</value>
 				</array>
         </array>
     </property>
@@ -2704,24 +2707,25 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="employmentWageLag" value="4" />
 	</bean>
 	
-		<bean id="expConsumptionPrice" class="jmab.expectations.SimpleAdaptiveExpectation"
+		<bean id="expConsumptionPrice" class="jmab.expectations.AnchoringAndAdjustmentExpectation"
 		scope="prototype">
 		<property name="numberPeriod" value="4"/>
 		<property name="nbVariables" value="1"/>
-		<property name="adaptiveParam" value="0.25"/>
+		<property name="anchorParameter" value="0.5"/>
+		<property name="adjustmentParameter" value="1.0"/>
 		<property name="weights">
 			<array>
 				<array>
 					<value>1.0</value>
 				</array>
 				<array>
-					<value>0.0</value>
+					<value>1.0</value>
 				</array>
 				<array>
-					<value>0.0</value>
+					<value>1.0</value>
 				</array>
 				<array>
-					<value>0.0</value>
+					<value>1.0</value>
 				</array>
         </array>
     </property>
