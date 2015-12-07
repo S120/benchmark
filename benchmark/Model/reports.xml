@@ -3716,6 +3716,173 @@
 	<property name="reportVariables" ref="hhDepositsReportVariables"/>
 </bean>
 
+
+<!-- CONSUMPTION FIRMS REAL SALES FORECAST ERROR-->
+
+<bean id="cFirmsRSalesExpErrorComputer" class="jmab.report.MicroExpectationsErrorComputer">
+	<property name="populationId"><util:constant static-field="benchmark.StaticValues.CONSUMPTIONFIRMS_ID"/></property>
+	<property name="expectationKey"><util:constant static-field="benchmark.StaticValues.EXPECTATIONS_REALSALES"/></property>
+	<property name="nbVariables" value="1"/>
+	<property name="percentage" value="true"/>
+</bean>
+
+<bean id="cFirmsRSalesExpErrorEventReport" class="jmab.report.MicroSimEventReport">
+	<property name="eventPrototype">
+		<bean class="jmab.events.MicroSimEvent">
+		</bean>
+	</property>
+	<property name="variableId">
+	        <util:constant static-field="benchmark.StaticValues.CRSALESEXPERRORREPORT_ID"/>
+	</property>
+	<property name="reportVariables" ref="cFirmsRSalesExpErrorTimeSeries"/>
+</bean>
+
+<bean id="cFirmsRSalesExpErrorCSVReport" class="jmab.report.MicroSimEventReport">
+	<property name="eventPrototype">
+		<bean class="jmab.events.MicroSimEvent"/>
+	</property>
+	<property name="variableId">
+	        <util:constant static-field="benchmark.StaticValues.CRSALESEXPERRORREPORT_ID"/>
+	</property>
+	<property name="reportVariables" ref="cFirmsRSalesExpErrorCSVReportVariables"/>
+</bean>
+
+<bean id="cFirmsRSalesExpErrorCSVReportVariables" class="jmab.report.MacroCSVReportVariables">
+	<property name="reportVariables" ref="cFirmsRSalesExpErrorReportVariables"/>
+	<property name="fileNamePrefix" ref="fileNamePrefix" />
+	<property name="fileNameSuffix" value="cFirmsRSalesExpError" />
+	<property name="fileNameExtension" value=".csv" />
+	<property name="passThrough" value="true" />
+</bean>
+
+<bean id="cFirmsRSalesExpErrorReportVariables" class="jmab.report.MicroMultiVariablesReport">
+	<property name="name" value="Cosumption Firms Real Sales Expectations Error"/>
+	<property name="numberOfSeries" value="100"/>
+</bean>
+
+<bean id="cFirmsRSalesExpErrorTimeSeriesChart" class="net.sourceforge.jabm.view.TimeSeriesChart">
+	<property name="series" ref="cFirmsRSalesExpErrorTimeSeries"/>
+	<property name="chartTitle" value="R Sales Exp Error"/>
+	<property name="rangeAxisLabel" value="Consumption Firms"/>
+</bean>
+
+<bean id="cFirmsRSalesExpErrorTimeSeries" class="jmab.report.MicroSeriesReportVariables">
+	<property name="reportVariables" ref="cFirmsRSalesExpErrorReportVariables"/>
+</bean>
+
+
+<!-- CAPITAL FIRMS REAL SALES FORECAST ERROR-->
+
+<bean id="kFirmsRSalesExpErrorComputer" class="jmab.report.MicroExpectationsErrorComputer">
+	<property name="populationId"><util:constant static-field="benchmark.StaticValues.CAPITALFIRMS_ID"/></property>
+	<property name="expectationKey"><util:constant static-field="benchmark.StaticValues.EXPECTATIONS_REALSALES"/></property>
+	<property name="nbVariables" value="1"/>
+	<property name="percentage" value="true"/>
+</bean>
+
+<bean id="kFirmsRSalesExpErrorEventReport" class="jmab.report.MicroSimEventReport">
+	<property name="eventPrototype">
+		<bean class="jmab.events.MicroSimEvent">
+		</bean>
+	</property>
+	<property name="variableId">
+	        <util:constant static-field="benchmark.StaticValues.KRSALESEXPERRORREPORT_ID"/>
+	</property>
+	<property name="reportVariables" ref="kFirmsRSalesExpErrorTimeSeries"/>
+</bean>
+
+<bean id="kFirmsRSalesExpErrorCSVReport" class="jmab.report.MicroSimEventReport">
+	<property name="eventPrototype">
+		<bean class="jmab.events.MicroSimEvent"/>
+	</property>
+	<property name="variableId">
+	        <util:constant static-field="benchmark.StaticValues.KRSALESEXPERRORREPORT_ID"/>
+	</property>
+	<property name="reportVariables" ref="kFirmsRSalesExpErrorCSVReportVariables"/>
+</bean>
+
+<bean id="kFirmsRSalesExpErrorCSVReportVariables" class="jmab.report.MacroCSVReportVariables">
+	<property name="reportVariables" ref="kFirmsRSalesExpErrorReportVariables"/>
+	<property name="fileNamePrefix" ref="fileNamePrefix" />
+	<property name="fileNameSuffix" value="kFirmsRSalesExpError" />
+	<property name="fileNameExtension" value=".csv" />
+	<property name="passThrough" value="true" />
+</bean>
+
+<bean id="kFirmsRSalesExpErrorReportVariables" class="jmab.report.MicroMultiVariablesReport">
+	<property name="name" value="Capital Firms Real Sales Expectations Error"/>
+	<property name="numberOfSeries" value="20"/>
+</bean>
+
+<bean id="kFirmsRSalesExpErrorTimeSeriesChart" class="net.sourceforge.jabm.view.TimeSeriesChart">
+	<property name="series" ref="kFirmsRSalesExpErrorTimeSeries"/>
+	<property name="chartTitle" value="R Sales Exp Error"/>
+	<property name="rangeAxisLabel" value="Capital Firms"/>
+</bean>
+
+<bean id="kFirmsRSalesExpErrorTimeSeries" class="jmab.report.MicroSeriesReportVariables">
+	<property name="reportVariables" ref="kFirmsRSalesExpErrorReportVariables"/>
+</bean>
+
+
+<!-- HH Prices expectation Error -->
+
+<!-- CAPITAL FIRMS REAL SALES FORECAST ERROR-->
+
+<bean id="hhPricesExpErrorComputer" class="jmab.report.MicroExpectationsErrorComputer">
+	<property name="populationId"><util:constant static-field="benchmark.StaticValues.HOUSEHOLDS_ID"/></property>
+	<property name="expectationKey"><util:constant static-field="benchmark.StaticValues.EXPECTATIONS_CONSPRICE"/></property>
+	<property name="nbVariables" value="1"/>
+	<property name="percentage" value="true"/>
+</bean>
+
+<bean id="hhPricesExpErrorEventReport" class="jmab.report.MicroSimEventReport">
+	<property name="eventPrototype">
+		<bean class="jmab.events.MicroSimEvent">
+		</bean>
+	</property>
+	<property name="variableId">
+	        <util:constant static-field="benchmark.StaticValues.HHPRICESEXPERRORREPORT_ID"/>
+	</property>
+	<property name="reportVariables" ref="hhPricesExpErrorTimeSeries"/>
+</bean>
+
+<bean id="hhPricesExpErrorCSVReport" class="jmab.report.MicroSimEventReport">
+	<property name="eventPrototype">
+		<bean class="jmab.events.MicroSimEvent"/>
+	</property>
+	<property name="variableId">
+	        <util:constant static-field="benchmark.StaticValues.HHPRICESEXPERRORREPORT_ID"/>
+	</property>
+	<property name="reportVariables" ref="hhPricesExpErrorCSVReportVariables"/>
+</bean>
+
+<bean id="hhPricesExpErrorCSVReportVariables" class="jmab.report.MacroCSVReportVariables">
+	<property name="reportVariables" ref="hhPricesExpErrorReportVariables"/>
+	<property name="fileNamePrefix" ref="fileNamePrefix" />
+	<property name="fileNameSuffix" value="hhPricesExpError" />
+	<property name="fileNameExtension" value=".csv" />
+	<property name="passThrough" value="true" />
+</bean>
+
+<bean id="hhPricesExpErrorReportVariables" class="jmab.report.MicroMultiVariablesReport">
+	<property name="name" value="HHs prices Expectations Error"/>
+	<property name="numberOfSeries" value="8000"/>
+</bean>
+
+<bean id="hhPricesExpErrorTimeSeriesChart" class="net.sourceforge.jabm.view.TimeSeriesChart">
+	<property name="series" ref="hhPricesExpErrorTimeSeries"/>
+	<property name="chartTitle" value="HHs prices Exp Error"/>
+	<property name="rangeAxisLabel" value="HHs"/>
+</bean>
+
+<bean id="hhPricesExpErrorTimeSeries" class="jmab.report.MicroSeriesReportVariables">
+	<property name="reportVariables" ref="hhPricesExpErrorReportVariables"/>
+</bean>
+
+
+
+
 <!--CONSUMPTION FIRMS PRICES -->
 
 <bean id="cFirmsPricesComputer" class="jmab.report.MicroFirmsPricesComputer">

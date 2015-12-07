@@ -78,6 +78,10 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 				<ref bean="bondMarket2Tic" />
 				<ref bean="reservesDemandBaselTic" />
 				<ref bean="reservesMarketBaselTic" />
+				
+				<ref bean="hhNetIncomeReportTic" />
+				<ref bean="microRealDesConsReportTic" />
+
 				<!-- 
 				<ref bean="microLoansKfirmsReportTic" />
 				<ref bean="microLoansCfirmsReportTic" /> 
@@ -168,6 +172,9 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 					<ref bean="cFirmsConsCredReportTic" />
 					<ref bean="kFirmsConsCredReportTic" /> 
 				-->
+				<ref bean="microHHPricesExpectationsReportTic" />
+				<ref bean="microKRExpectationsReportTic" />				
+				<ref bean="microCRExpectationsReportTic" />
 				<ref bean="kAggConsCredReportTic" />
 				<ref bean="cAggConsCredReportTic" />
 				<ref bean="cCapacityReportTic" />	
@@ -1212,6 +1219,27 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	<property name="variableName" value="Capital Firms Prices"></property>
 	<property name="computer" ref="kFirmsPricesComputer"></property>
 	</bean>
+	
+	<bean id="microCRExpectationsReportTic" class="jmab.events.MicroMultiVariablesTicEvent">
+	<property name="tic"><util:constant static-field="benchmark.StaticValues.TIC_CRSALESEXPERRORREPORT" /></property>
+	<property name="variableId"><util:constant static-field="benchmark.StaticValues.CRSALESEXPERRORREPORT_ID" /></property>
+	<property name="variableName" value="C real Sales Exp Error"></property>
+	<property name="computer" ref="cFirmsRSalesExpErrorComputer"></property>
+	</bean>
+	
+	<bean id="microKRExpectationsReportTic" class="jmab.events.MicroMultiVariablesTicEvent">
+	<property name="tic"><util:constant static-field="benchmark.StaticValues.TIC_KRSALESEXPERRORREPORT" /></property>
+	<property name="variableId"><util:constant static-field="benchmark.StaticValues.KRSALESEXPERRORREPORT_ID" /></property>
+	<property name="variableName" value="K real Sales Exp Error"></property>
+	<property name="computer" ref="kFirmsRSalesExpErrorComputer"></property>
+	</bean>
+	
+	<bean id="microHHPricesExpectationsReportTic" class="jmab.events.MicroMultiVariablesTicEvent">
+	<property name="tic"><util:constant static-field="benchmark.StaticValues.TIC_HHPRICESEXPERRORREPORT" /></property>
+	<property name="variableId"><util:constant static-field="benchmark.StaticValues.HHPRICESEXPERRORREPORT_ID" /></property>
+	<property name="variableName" value="HHs Prices Exp Error"></property>
+	<property name="computer" ref="hhPricesExpErrorComputer"></property>
+	</bean>
 
 <!-- NOT USED ANYMORE
 	<bean id="cFirmsTargLevReportTic" class="jmab.events.MicroMultiVariablesTicEvent">
@@ -1550,73 +1578,70 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="turnoverLabor" ref="turnoverVal"/>
 	</bean>
 	
-	<bean id="expSales" class="jmab.expectations.AnchoringAndAdjustmentExpectation"
+	<bean id="expSales" class="jmab.expectations.TrendFollowingExpectation"
 		scope="prototype">
 		<property name="numberPeriod" value="4"/>
 		<property name="nbVariables" value="1"/>
-		<property name="anchorParameter" value="0.5"/>
-		<property name="adjustmentParameter" value="1.0"/>
+		<property name="adaptiveParam" value="0.1"/>
 		<property name="weights">
 			<array>
 				<array>
 					<value>1.0</value>
 				</array>
 				<array>
-					<value>1.0</value>
+					<value>0.0</value>
 				</array>
 				<array>
-					<value>1.0</value>
+					<value>0.0</value>
 				</array>
 				<array>
-					<value>1.0</value>
+					<value>0.0</value>
 				</array>
         </array>
     </property>
 	</bean>
 	
-	<bean id="expRSales" class="jmab.expectations.AnchoringAndAdjustmentExpectation"
+	<bean id="expRSales" class="jmab.expectations.TrendFollowingExpectation"
 		scope="prototype">
 		<property name="numberPeriod" value="4"/>
 		<property name="nbVariables" value="1"/>
-		<property name="anchorParameter" value="0.5"/>
-		<property name="adjustmentParameter" value="1.0"/>
+		<property name="adaptiveParam" value="0.1"/>
 		<property name="weights">
 			<array>
 				<array>
 					<value>1.0</value>
 				</array>
 				<array>
-					<value>1.0</value>
+					<value>0.0</value>
 				</array>
 				<array>
-					<value>1.0</value>
+					<value>0.0</value>
 				</array>
 				<array>
-					<value>1.0</value>
+					<value>0.0</value>
 				</array>
         </array>
     </property>
 	</bean>
 	
-	<bean id="expWages" class="jmab.expectations.AnchoringAndAdjustmentExpectation"
+	<bean id="expWages" class="jmab.expectations.TrendFollowingExpectation"
 		scope="prototype">
 		<property name="numberPeriod" value="4"/>
 		<property name="nbVariables" value="1"/>
-		<property name="anchorParameter" value="0.5"/>
-		<property name="adjustmentParameter" value="1.0"/>
+		<property name="adaptiveParam" value="0.1"/>
 		<property name="weights">
 			<array>
 				<array>
 					<value>1.0</value>
 				</array>
 				<array>
-					<value>1.0</value>
+					<value>0.0</value>
 				</array>
 				<array>
-					<value>1.0</value>
+					<value>0.0</value>
 				</array>
 				<array>
-					<value>1.0</value>
+					<value>0.0</value>
 				</array>
         </array>
     </property>
@@ -2302,25 +2327,24 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="depositInterestRate" value="0.0025" />
 	</bean>
 	
-	<bean id="expDeposits" class="jmab.expectations.AnchoringAndAdjustmentExpectation"
+	<bean id="expDeposits" class="jmab.expectations.TrendFollowingExpectation"
 		scope="prototype">
 		<property name="numberPeriod" value="4"/>
 		<property name="nbVariables" value="1"/>
-		<property name="anchorParameter" value="0.5"/>
-		<property name="adjustmentParameter" value="1.0"/>
+		<property name="adaptiveParam" value="0.1"/>
 		<property name="weights">
 			<array>
 				<array>
 					<value>1.0</value>
 				</array>
 				<array>
-					<value>1.0</value>
+					<value>0.0</value>
 				</array>
 				<array>
-					<value>1.0</value>
+					<value>0.0</value>
 				</array>
 				<array>
-					<value>1.0</value>
+					<value>0.0</value>
 				</array>
         </array>
     </property>
@@ -2707,25 +2731,24 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="employmentWageLag" value="4" />
 	</bean>
 	
-		<bean id="expConsumptionPrice" class="jmab.expectations.AnchoringAndAdjustmentExpectation"
+		<bean id="expConsumptionPrice" class="jmab.expectations.TrendFollowingExpectation"
 		scope="prototype">
 		<property name="numberPeriod" value="4"/>
 		<property name="nbVariables" value="1"/>
-		<property name="anchorParameter" value="0.5"/>
-		<property name="adjustmentParameter" value="1.0"/>
+		<property name="adaptiveParam" value="0.1"/>
 		<property name="weights">
 			<array>
 				<array>
 					<value>1.0</value>
 				</array>
 				<array>
-					<value>1.0</value>
+					<value>0.0</value>
 				</array>
 				<array>
-					<value>1.0</value>
+					<value>0.0</value>
 				</array>
 				<array>
-					<value>1.0</value>
+					<value>0.0</value>
 				</array>
         </array>
     </property>
