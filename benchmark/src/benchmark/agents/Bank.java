@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.List;
 
 import jmab.agents.AbstractBank;
+import jmab.agents.BaselIIIAgent;
 import jmab.agents.BondDemander;
 import jmab.agents.BondSupplier;
 import jmab.agents.CreditDemander;
@@ -59,7 +60,7 @@ import benchmark.StaticValues;
  */
 @SuppressWarnings("serial")
 public class Bank extends AbstractBank implements CreditSupplier, CreditDemander,
-		DepositSupplier, ProfitsTaxPayer, BondDemander, InterestRateSetterWithTargets {
+		DepositSupplier, ProfitsTaxPayer, BondDemander, InterestRateSetterWithTargets, BaselIIIAgent {
 
 	private double reserveInterestRate;
 	private double advancesInterestRate;
@@ -85,6 +86,8 @@ public class Bank extends AbstractBank implements CreditSupplier, CreditDemander
 	private double bailoutCost;
 	//private double preTaxProfits;
 	//private double profitsAfterTax;
+	private double targetedLiquidityRatio;
+	private double targetedCapitalAdequacyRatio;
 	
 	
 	/* (non-Javadoc)
@@ -1048,5 +1051,21 @@ public class Bank extends AbstractBank implements CreditSupplier, CreditDemander
 		return riskAversionK;
 	}
 
+	@Override
+	public double getTargetedLiquidityRatio() {
+		return this.targetedLiquidityRatio;
+	}
+
+	public void setTargetedLiquidityRatio(double targetedLiquidityRatio) {
+		this.targetedLiquidityRatio = targetedLiquidityRatio;
+	}
 	
+	@Override
+	public double getTargetedCapitalAdequacyRatio() {
+		return this.targetedCapitalAdequacyRatio;
+	}
+
+	public void setTargetedCapitalAdequacyRatio(double targetedCapitalAdequacyRatio) {
+		this.targetedCapitalAdequacyRatio = targetedCapitalAdequacyRatio;
+	}
 }

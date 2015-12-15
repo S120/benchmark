@@ -14,11 +14,8 @@
  */
 package benchmark.strategies;
 
-import java.nio.ByteBuffer;
 import java.util.List;
 
-import benchmark.StaticValues;
-import benchmark.agents.Bank;
 import jmab.agents.BondSupplier;
 import jmab.agents.MacroAgent;
 import jmab.goods.Item;
@@ -28,6 +25,8 @@ import net.sourceforge.jabm.Population;
 import net.sourceforge.jabm.SimulationController;
 import net.sourceforge.jabm.agent.Agent;
 import net.sourceforge.jabm.strategy.AbstractStrategy;
+import benchmark.StaticValues;
+import benchmark.agents.Bank;
 
 /**
  * @author Alessandro Caiani and Antoine Godin
@@ -36,21 +35,6 @@ import net.sourceforge.jabm.strategy.AbstractStrategy;
 @SuppressWarnings("serial")
 public class BondDemandStrategyReserves extends AbstractStrategy implements BondDemandStrategy{
 	
-	private double liquidityRatio;
-
-	/**
-	 * @return the liquidityRatio
-	 */
-	public double getLiquidityRatio() {
-		return liquidityRatio;
-	}
-
-	/**
-	 * @param liquidityRatio the liquidityRatio to set
-	 */
-	public void setLiquidityRatio(double liquidityRatio) {
-		this.liquidityRatio = liquidityRatio;
-	}
 
 	/* (non-Javadoc)
 	 * @see jmab.strategies.BondDemandStrategy#BondDemand(double)
@@ -58,6 +42,7 @@ public class BondDemandStrategyReserves extends AbstractStrategy implements Bond
 	@Override
 	public int bondDemand(BondSupplier supplier) {
 		Bank bank = (Bank) getAgent();
+		double liquidityRatio=bank.getTargetedLiquidityRatio();
 		SimulationController controller = (SimulationController)bank.getScheduler();
 		MacroPopulation macroPop = (MacroPopulation) controller.getPopulation();
 		Population banks = macroPop.getPopulation(bank.getPopulationId());
@@ -91,9 +76,7 @@ public class BondDemandStrategyReserves extends AbstractStrategy implements Bond
 	 */
 	@Override
 	public byte[] getBytes() {
-		ByteBuffer buf = ByteBuffer.allocate(8);
-		buf.putDouble(this.liquidityRatio);
-		return buf.array();
+		return new byte[0];
 	}
 
 
@@ -105,8 +88,6 @@ public class BondDemandStrategyReserves extends AbstractStrategy implements Bond
 	 */
 	@Override
 	public void populateFromBytes(byte[] content, MacroPopulation pop) {
-		ByteBuffer buf = ByteBuffer.wrap(content);
-		this.liquidityRatio = buf.getDouble();
 	}
 
 }

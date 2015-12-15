@@ -36,7 +36,6 @@ import benchmark.agents.Bank;
 public class AdaptiveInterestRateAverageThreshold extends AbstractStrategy implements
 		InterestRateStrategy {
 
-	private double threshold; //to be set through the configuration file.
 	private double adaptiveParameter;
 	private AbstractDelegatedDistribution distribution; 
 	private boolean increase;
@@ -49,6 +48,7 @@ public class AdaptiveInterestRateAverageThreshold extends AbstractStrategy imple
 	public double computeInterestRate(MacroAgent creditDemander, double amount,
 			int length) {
 		SimulationController controller = (SimulationController)this.getScheduler();
+		double threshold = 0;
 		MacroPopulation macroPop = (MacroPopulation) controller.getPopulation();
 		Population banks = macroPop.getPopulation(StaticValues.BANKS_ID);
 		if (mktId==StaticValues.MKT_DEPOSIT){
@@ -90,20 +90,6 @@ public class AdaptiveInterestRateAverageThreshold extends AbstractStrategy imple
 		return Math.min(Math.max(iR, lender.getInterestRateLowerBound(mktId)),lender.getInterestRateUpperBound(mktId));
 	}
 
-
-	/**
-	 * @return the threshold
-	 */
-	public double getThreshold() {
-		return threshold;
-	}
-
-	/**
-	 * @param threshold the threshold to set
-	 */
-	public void setThreshold(double threshold) {
-		this.threshold = threshold;
-	}
 
 	/**
 	 * @return the adaptiveParameter
@@ -171,8 +157,7 @@ public class AdaptiveInterestRateAverageThreshold extends AbstractStrategy imple
 	 */
 	@Override
 	public byte[] getBytes() {
-		ByteBuffer buf = ByteBuffer.allocate(21);
-		buf.putDouble(threshold);
+		ByteBuffer buf = ByteBuffer.allocate(13);
 		buf.putDouble(adaptiveParameter);
 		buf.putInt(mktId);
 		if(increase)
@@ -192,7 +177,6 @@ public class AdaptiveInterestRateAverageThreshold extends AbstractStrategy imple
 	@Override
 	public void populateFromBytes(byte[] content, MacroPopulation pop) {
 		ByteBuffer buf = ByteBuffer.wrap(content);
-		this.threshold = buf.getDouble();
 		this.adaptiveParameter = buf.getDouble();
 		this.mktId = buf.getInt();
 		this.increase=buf.get()==(byte)1;

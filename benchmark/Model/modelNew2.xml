@@ -1992,6 +1992,8 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="advancesInterestRate" value="0.005" />
 		<property name="bondInterestRate" value="0.0025" />
 		<property name="depositInterestRate" value="0.0025" />
+		<property name="targetedCapitalAdequacyRatio" value="0.06"></property>
+		<property name="targetedLiquidityRatio" value="0.17995897"/>
 	</bean>
 	
 	<bean id="expDeposits" class="jmab.expectations.SimpleAdaptiveExpectation"
@@ -2139,13 +2141,11 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="increase" value="false"/>
 <!-- 		<property name="adaptiveParameter" value="1"/> -->
 		<property name="adaptiveParameter" value="1"/>
-		<property name="threshold" value="0.17995897"/>
 	</bean>
 	
 	<!-- CAR RESERVE REQUIREMENT
 	<bean id="banksAdvancesStrategy" scope="prototype" parent="strategy"
 		class="jmab.strategies.BaselIIIReserveRequirements">
-		<property name="capitalAdequacyRatio" value="0.06"></property>
 		<property name="reserveId"><util:constant static-field="benchmark.StaticValues.SM_RESERVES" /> </property>
 		<property name="capitalIds">
 			<list>
@@ -2175,7 +2175,6 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	<!-- BLR RESERVE REQUIREMENT-->
 	<bean id="banksAdvancesStrategy" scope="prototype" parent="strategy"
 		class="jmab.strategies.BaselIIIReserveRequirementsBLR">
-		<property name="liquidityRatio" value="0.08"></property>
 		<property name="reserveIds">
 			<list>
 	           <util:constant static-field="benchmark.StaticValues.SM_CASH"/>
@@ -2201,7 +2200,6 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	
 	<bean id="banksBondStrategy" scope="prototype" parent="strategy"
 		class="benchmark.strategies.BondDemandStrategyReserves">
-		<property name="liquidityRatio" value="0.258026342"/>
 	</bean>
 	
 	<bean id="banksDepInterestStrategy" scope="prototype" parent="strategy"
@@ -2211,7 +2209,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="increase" value="false"/>
 <!-- 		<property name="adaptiveParameter" value="1"/> -->
         <property name="adaptiveParameter" value="1"/>
-		<property name="threshold" value="0.258026342"/>
+		
 	</bean>
 	
 <!-- Old credit supply with CAR
