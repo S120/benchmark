@@ -18,9 +18,9 @@ import java.nio.ByteBuffer;
 import java.util.List;
 
 import benchmark.agents.ConsumptionFirm;
-import jmab.goods.CapitalGood;
-import jmab.goods.Item;
 import jmab.population.MacroPopulation;
+import jmab.stockmatrix.CapitalGood;
+import jmab.stockmatrix.Item;
 import jmab.strategies.InvestmentStrategy;
 import net.sourceforge.jabm.strategy.AbstractStrategy;
 

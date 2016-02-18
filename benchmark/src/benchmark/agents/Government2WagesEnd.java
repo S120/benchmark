@@ -19,7 +19,7 @@ import java.util.Collections;
 import jmab.agents.BondSupplier;
 import jmab.agents.LaborDemander;
 import jmab.events.MacroTicEvent;
-import jmab.goods.Deposit;
+import jmab.stockmatrix.Deposit;
 import benchmark.StaticValues;
 
 /**

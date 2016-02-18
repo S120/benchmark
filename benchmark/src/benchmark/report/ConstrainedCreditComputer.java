@@ -20,14 +20,14 @@ import net.sourceforge.jabm.Population;
 import net.sourceforge.jabm.agent.Agent;
 import jmab.agents.CreditDemander;
 import jmab.population.MacroPopulation;
-import jmab.report.VariableComputer;
+import jmab.report.MacroVariableComputer;
 import jmab.simulations.MacroSimulation;
 
 /**
  * @author Alessandro Caiani and Antoine Godin
  *
  */
-public class ConstrainedCreditComputer implements VariableComputer {
+public class ConstrainedCreditComputer implements MacroVariableComputer {
 	private int populationId;
 	private int idLoanSM;
 	/* (non-Javadoc)

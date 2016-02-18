@@ -18,8 +18,8 @@ import java.nio.ByteBuffer;
 
 import benchmark.agents.Bank;
 import jmab.expectations.Expectation;
-import jmab.goods.Item;
 import jmab.population.MacroPopulation;
+import jmab.stockmatrix.Item;
 import jmab.strategies.BankruptcyStrategy;
 import net.sourceforge.jabm.strategy.AbstractStrategy;
 

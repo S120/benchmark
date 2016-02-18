@@ -14,7 +14,7 @@
  */
 package benchmark;
 
-import net.sourceforge.jabm.DesktopSimulationManager;
+import net.sourceforge.jabm.SimulationManager;
 
 /**
  * @author Steve Phelps
@@ -22,6 +22,6 @@ import net.sourceforge.jabm.DesktopSimulationManager;
 public class Main {
     
     public static void main(String [] args) {
-        DesktopSimulationManager.main(new String[] {});
+        SimulationManager.main(new String[] {});
     }
 }

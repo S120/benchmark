@@ -20,14 +20,14 @@ import benchmark.agents.Households;
 import net.sourceforge.jabm.Population;
 import net.sourceforge.jabm.agent.Agent;
 import jmab.population.MacroPopulation;
-import jmab.report.VariableComputer;
+import jmab.report.MacroVariableComputer;
 import jmab.simulations.MacroSimulation;
 
 /**
  * @author Alessandro Caiani and Antoine Godin
  *
  */
-public class AverageNetIncomeComputer implements VariableComputer {
+public class AverageNetIncomeComputer implements MacroVariableComputer {
 	private int householdId;
 
 	/* (non-Javadoc)

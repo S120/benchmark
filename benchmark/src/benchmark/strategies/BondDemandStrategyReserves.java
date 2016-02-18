@@ -18,8 +18,8 @@ import java.util.List;
 
 import jmab.agents.BondSupplier;
 import jmab.agents.MacroAgent;
-import jmab.goods.Item;
 import jmab.population.MacroPopulation;
+import jmab.stockmatrix.Item;
 import jmab.strategies.BondDemandStrategy;
 import net.sourceforge.jabm.Population;
 import net.sourceforge.jabm.SimulationController;

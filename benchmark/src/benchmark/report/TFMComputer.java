@@ -26,13 +26,13 @@ import benchmark.agents.ConsumptionFirm;
 import benchmark.agents.GovernmentAntiCyclical;
 import benchmark.agents.Households;
 import benchmark.strategies.FixedShareOfProfitsToPopulationAsShareOfWealthDividends;
-import jmab.goods.CapitalGood;
-import jmab.goods.ConsumptionGood;
-import jmab.goods.Item;
 import jmab.population.MacroPopulation;
 import jmab.report.AbstractMicroComputer;
 import jmab.report.MicroMultipleVariablesComputer;
 import jmab.simulations.MacroSimulation;
+import jmab.stockmatrix.CapitalGood;
+import jmab.stockmatrix.ConsumptionGood;
+import jmab.stockmatrix.Item;
 import net.sourceforge.jabm.Population;
 import net.sourceforge.jabm.agent.Agent;
 

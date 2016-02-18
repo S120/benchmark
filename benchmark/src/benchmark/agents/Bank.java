@@ -33,14 +33,14 @@ import jmab.agents.InterestRateSetterWithTargets;
 import jmab.agents.MacroAgent;
 import jmab.agents.ProfitsTaxPayer;
 import jmab.events.MacroTicEvent;
-import jmab.goods.Bond;
-import jmab.goods.Cash;
-import jmab.goods.Deposit;
-import jmab.goods.Item;
-import jmab.goods.Loan;
 import jmab.population.MacroPopulation;
 import jmab.simulations.MacroSimulation;
 import jmab.simulations.TwoStepMarketSimulation;
+import jmab.stockmatrix.Bond;
+import jmab.stockmatrix.Cash;
+import jmab.stockmatrix.Deposit;
+import jmab.stockmatrix.Item;
+import jmab.stockmatrix.Loan;
 import jmab.strategies.BankruptcyStrategy;
 import jmab.strategies.BondDemandStrategy;
 import jmab.strategies.DividendsStrategy;
@@ -473,7 +473,7 @@ public class Bank extends AbstractBank implements CreditSupplier, CreditDemander
 	 * there is enough money on the reserve account. Thus allow cash to go negative if needed. Anyway the reserve market
 	 * afterwards will make sure there is no negative values for cash and reserves.
 	 * TODO: CHECK THIS
-	 * @see jmab.agents.BondDemander#getPayingStocks(int, jmab.goods.Item)
+	 * @see jmab.agents.BondDemander#getPayingStocks(int, jmab.stockmatrix.Item)
 	 */
 	@Override
 	public List<Item> getPayingStocks(int idBondSM, Item payableStock) {

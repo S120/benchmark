@@ -23,11 +23,11 @@ import jmab.agents.CreditSupplier;
 import jmab.agents.LaborSupplier;
 import jmab.agents.LiabilitySupplier;
 import jmab.agents.MacroAgent;
-import jmab.goods.Cash;
-import jmab.goods.Deposit;
-import jmab.goods.Item;
-import jmab.goods.Loan;
 import jmab.population.MacroPopulation;
+import jmab.stockmatrix.Cash;
+import jmab.stockmatrix.Deposit;
+import jmab.stockmatrix.Item;
+import jmab.stockmatrix.Loan;
 import jmab.strategies.BankruptcyStrategy;
 import net.sourceforge.jabm.strategy.AbstractStrategy;
 
