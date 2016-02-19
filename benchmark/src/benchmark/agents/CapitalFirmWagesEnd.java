@@ -14,6 +14,9 @@
  */
 package benchmark.agents;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.Collections;
 import java.util.List;
 
@@ -28,6 +31,7 @@ import jmab.agents.PriceSetterWithTargets;
 import jmab.agents.ProfitsTaxPayer;
 import jmab.events.MacroTicEvent;
 import jmab.expectations.Expectation;
+import jmab.population.MacroPopulation;
 import jmab.stockmatrix.CapitalGood;
 import jmab.stockmatrix.Cash;
 import jmab.stockmatrix.Deposit;
@@ -44,7 +48,7 @@ import benchmark.StaticValues;
  *
  */
 @SuppressWarnings("serial")
-public class CopyOfCapitalFirm2WagesEnd extends CapitalFirm implements GoodSupplier,
+public class CapitalFirmWagesEnd extends CapitalFirm implements GoodSupplier,
 		CreditDemander, LaborDemander, DepositDemander, PriceSetterWithTargets, ProfitsTaxPayer, FinanceAgent {
 
 	private double minWageDiscount;
@@ -195,22 +199,22 @@ public class CopyOfCapitalFirm2WagesEnd extends CapitalFirm implements GoodSuppl
 	protected void computeCreditDemand() {
 		computeDebtPayments();
 		FinanceStrategy strategy = (FinanceStrategy)this.getStrategy(StaticValues.STRATEGY_FINANCE);
-		Expectation expectation = this.getExpectation(StaticValues.EXPECTATIONS_WAGES);
-		Expectation expectation1 = this.getExpectation(StaticValues.EXPECTATIONS_NOMINALSALES);
-		Expectation expectation2=this.getExpectation(StaticValues.EXPECTATIONS_REALSALES);
-		double expRealSales=expectation2.getExpectation();
+		Expectation wageExp = this.getExpectation(StaticValues.EXPECTATIONS_WAGES);
+		Expectation nomSalesExp = this.getExpectation(StaticValues.EXPECTATIONS_NOMINALSALES);
+		Expectation realSalesExp=this.getExpectation(StaticValues.EXPECTATIONS_REALSALES);
+		double expRealSales=realSalesExp.getExpectation();
 		CapitalGood inventories = (CapitalGood)this.getItemStockMatrix(true, StaticValues.SM_CAPGOOD); 
 		double uc=inventories.getUnitCost();
 		int inv = (int)inventories.getQuantity();
 		int nbWorkers = this.getRequiredWorkers();
-		double expWages = expectation.getExpectation();
+		double expWages = wageExp.getExpectation();
 		DividendsStrategy strategyDiv=(DividendsStrategy)this.getStrategy(StaticValues.STRATEGY_DIVIDENDS);
 		TargetExpectedInventoriesOutputStrategy strategyProd= (TargetExpectedInventoriesOutputStrategy) this.getStrategy(StaticValues.STRATEGY_PRODUCTION);
 		ProfitsWealthTaxStrategy taxStrategy= (ProfitsWealthTaxStrategy) this.getStrategy(StaticValues.STRATEGY_TAXES);
 		double profitTaxRate=taxStrategy.getProfitTaxRate();
 		double shareInvenstories=strategyProd.getInventoryShare();
 		double profitShare=strategyDiv.getProfitShare();
-		double expRevenues = expectation1.getExpectation();
+		double expRevenues = nomSalesExp.getExpectation();
 		double expectedProfits=expRevenues-(nbWorkers*expWages)+this.interestReceived-this.debtInterests+(shareInvenstories*expRealSales-inv)*uc;
 		double expectedTaxes=expectedProfits*profitTaxRate;
 		double expectedDividends=expectedProfits*(1-profitTaxRate)*profitShare;
@@ -249,4 +253,119 @@ public class CopyOfCapitalFirm2WagesEnd extends CapitalFirm implements GoodSuppl
 		this.shareOfExpIncomeAsDeposit = shareOfExpIncomeAsDeposit;
 	}
 	
+	/**
+	 * Populates the agent characteristics using the byte array content. The structure is as follows:
+	 * [sizeMacroAgentStructure][MacroAgentStructure][targetStock][amountResearch][creditdDemanded][capitalProductivity][capitalLaborRatio]
+	 * [debtBurden][debtInterests][interestReceived][turnoverLabor][minWageDiscount][shareOfExpIncomeAsDeposit]
+	 * [sizeDebtPayments][debtPayments][payableStockId][laborProductvity][capitalDuration][capitalAmortization]
+	 * [matrixSize][stockMatrixStructure][expSize][ExpectationStructure][passedValSize][PassedValStructure][stratsSize][StrategiesStructure]
+	 */
+	@Override
+	public void populateAgent(byte[] content, MacroPopulation pop) {
+		ByteBuffer buf = ByteBuffer.wrap(content);
+		byte[] macroBytes = new byte[buf.getInt()];
+		buf.get(macroBytes);
+		super.populateCharacteristics(macroBytes, pop);
+		targetStock = buf.getDouble();
+		amountResearch = buf.getDouble();
+		creditDemanded = buf.getDouble();
+		capitalProductivity = buf.getDouble();
+		capitalLaborRatio = buf.getDouble();
+		debtBurden = buf.getDouble();
+		debtInterests = buf.getDouble();
+		interestReceived = buf.getDouble();
+		turnoverLabor = buf.getDouble();
+		minWageDiscount = buf.getDouble();
+		shareOfExpIncomeAsDeposit = buf.getDouble();
+		int lengthDebtPayments = buf.getInt();
+		debtPayments = new double[lengthDebtPayments][3];
+		for(int i = 0 ; i < debtPayments.length ; i++){
+			debtPayments[i][0] = buf.getDouble();
+			debtPayments[i][1] = buf.getDouble();
+			debtPayments[i][2] = buf.getDouble();
+		}
+		payableStockId = buf.getInt();
+		laborProductivity = buf.getInt();
+		capitalDuration = buf.getInt();
+		capitalAmortization = buf.getInt();
+		int matSize = buf.getInt();
+		if(matSize>0){
+			byte[] smBytes = new byte[matSize];
+			buf.get(smBytes);
+			this.populateStockMatrixBytes(smBytes, pop);
+		}
+		int expSize = buf.getInt();
+		if(expSize>0){
+			byte[] expBytes = new byte[expSize];
+			buf.get(expBytes);
+			this.populateExpectationsBytes(expBytes);
+		}
+		int lagSize = buf.getInt();
+		if(lagSize>0){
+			byte[] lagBytes = new byte[lagSize];
+			buf.get(lagBytes);
+			this.populatePassedValuesBytes(lagBytes);
+		}
+		int stratSize = buf.getInt();
+		if(stratSize>0){
+			byte[] stratBytes = new byte[stratSize];
+			buf.get(stratBytes);
+			this.populateStrategies(stratBytes, pop);
+		}
+	}
+	
+	/**
+	 * Generates the byte array containing all relevant informations regarding the capital firm agent. The structure is as follows:
+	 * [sizeMacroAgentStructure][MacroAgentStructure][targetStock][amountResearch][creditdDemanded][capitalProductivity][capitalLaborRatio]
+	 * [debtBurden][debtInterests][interestReceived][turnoverLabor][minWageDiscount][shareOfExpIncomeAsDeposit]
+	 * [sizeDebtPayments][debtPayments][payableStockId][laborProductvity][capitalDuration][capitalAmortization]
+	 * [matrixSize][stockMatrixStructure][expSize][ExpectationStructure][passedValSize][PassedValStructure][stratsSize][StrategiesStructure]
+	 */
+	@Override
+	public byte[] getBytes() {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		try {
+			byte[] charBytes = super.getAgentCharacteristicsBytes();
+			out.write(ByteBuffer.allocate(4).putInt(charBytes.length).array());
+			out.write(charBytes);
+			ByteBuffer buf = ByteBuffer.allocate((9+3*debtPayments.length)*8+16);
+			buf.putDouble(targetStock);
+			buf.putDouble(amountResearch);
+			buf.putDouble(creditDemanded);
+			buf.putDouble(capitalProductivity);
+			buf.putDouble(capitalLaborRatio);
+			buf.putDouble(debtBurden);
+			buf.putDouble(debtInterests);
+			buf.putDouble(interestReceived);
+			buf.putDouble(turnoverLabor);	
+			buf.putDouble(minWageDiscount);
+			buf.putDouble(shareOfExpIncomeAsDeposit);			
+			buf.putInt(debtPayments.length);
+			for(int i = 0 ; i < debtPayments.length ; i++){
+				buf.putDouble(debtPayments[i][0]);
+				buf.putDouble(debtPayments[i][1]);
+				buf.putDouble(debtPayments[i][2]);
+			}
+			buf.putInt(payableStockId);
+			buf.putInt(laborProductivity);
+			buf.putInt(capitalDuration);
+			buf.putInt(capitalAmortization);
+			out.write(buf.array());
+			byte[] smBytes = super.getStockMatrixBytes();
+			out.write(ByteBuffer.allocate(4).putInt(smBytes.length).array());
+			out.write(smBytes);
+			byte[] expBytes = super.getExpectationsBytes();
+			out.write(ByteBuffer.allocate(4).putInt(expBytes.length).array());
+			out.write(expBytes);
+			byte[] passedValBytes = super.getPassedValuesBytes();
+			out.write(ByteBuffer.allocate(4).putInt(passedValBytes.length).array());
+			out.write(passedValBytes);
+			byte[] stratsBytes = super.getStrategiesBytes();
+			out.write(ByteBuffer.allocate(4).putInt(stratsBytes.length).array());
+			out.write(stratsBytes);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return out.toByteArray();
+	}
 }

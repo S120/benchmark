@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import net.sourceforge.jabm.agent.Agent;
 import jmab.agents.CreditDemander;
 import jmab.agents.DepositDemander;
 import jmab.agents.FinanceAgent;
@@ -37,13 +38,16 @@ import jmab.agents.ProfitsTaxPayer;
 import jmab.events.MacroTicEvent;
 import jmab.expectations.Expectation;
 import jmab.population.MacroPopulation;
+import jmab.stockmatrix.CapitalGood;
 import jmab.stockmatrix.Cash;
+import jmab.stockmatrix.ConsumptionGood;
 import jmab.stockmatrix.Deposit;
 import jmab.stockmatrix.Item;
 import jmab.strategies.DividendsStrategy;
 import jmab.strategies.FinanceStrategy;
+import jmab.strategies.ProfitsWealthTaxStrategy;
 import jmab.strategies.SelectSellerStrategy;
-import net.sourceforge.jabm.agent.Agent;
+import jmab.strategies.TargetExpectedInventoriesOutputStrategy;
 import benchmark.StaticValues;
 
 /**
@@ -51,7 +55,7 @@ import benchmark.StaticValues;
  *
  */
 @SuppressWarnings("serial")
-public class ConsumptionFirm2WagesEnd extends ConsumptionFirm implements GoodSupplier, GoodDemander, CreditDemander, 
+public class ConsumptionFirmWagesEnd extends ConsumptionFirm implements GoodSupplier, GoodDemander, CreditDemander, 
 LaborDemander, DepositDemander, PriceSetterWithTargets, ProfitsTaxPayer, FinanceAgent, InvestmentAgent {
 
 
@@ -65,6 +69,8 @@ LaborDemander, DepositDemander, PriceSetterWithTargets, ProfitsTaxPayer, Finance
 	protected void onTicArrived(MacroTicEvent event) {
 		switch(event.getTic()){
 		case StaticValues.TIC_COMPUTEEXPECTATIONS:
+			bailoutCost=0;
+			this.defaulted=false;
 			computeExpectations();
 			determineOutput();
 			break;
@@ -131,7 +137,17 @@ LaborDemander, DepositDemander, PriceSetterWithTargets, ProfitsTaxPayer, Finance
 				neededDiscount = deposit.getQuantity()/wageBill;
 			}
 			if(neededDiscount<this.minWageDiscount){
+				Collections.shuffle(this.employees);
+				for(int i=0;i<employees.size();i++){
+					LaborSupplier employee = (LaborSupplier) employees.get(i);
+					Item payableStock = employee.getPayableStock(StaticValues.MKT_LABOR);
+					LiabilitySupplier payingSupplier = (LiabilitySupplier) deposit.getLiabilityHolder();
+					payingSupplier.transfer(deposit, payableStock, wageBill*neededDiscount/employees.size());
+				}
+				deposit.setValue(0);
+				System.out.println("Default "+ this.getAgentId() + " due to wages");
 				this.bankruptcy();
+				
 			}else{
 				//3. Pay wages
 				Collections.shuffle(this.employees);
@@ -188,16 +204,37 @@ LaborDemander, DepositDemander, PriceSetterWithTargets, ProfitsTaxPayer, Finance
 	@Override
 	protected void computeCreditDemand() {
 		this.computeDebtPayments();
-		Expectation expectation1=this.getExpectation(StaticValues.EXPECTATIONS_NOMINALSALES);
-		double expRevenues=expectation1.getExpectation();
+		Expectation nomSalesExp=this.getExpectation(StaticValues.EXPECTATIONS_NOMINALSALES);
+		Expectation realSalesExp=this.getExpectation(StaticValues.EXPECTATIONS_REALSALES);
+		double expRealSales=realSalesExp.getExpectation();
+		ConsumptionGood inventories = (ConsumptionGood)this.getItemStockMatrix(true, StaticValues.SM_CONSGOOD); 
+		double uc=inventories.getUnitCost();
+		int inv = (int)inventories.getQuantity();
+		double expRevenues=nomSalesExp.getExpectation();
 		int nbWorkers = this.getRequiredWorkers();
 		Expectation expectation = this.getExpectation(StaticValues.EXPECTATIONS_WAGES);
 		double expWages = expectation.getExpectation();
 		DividendsStrategy strategyDiv=(DividendsStrategy)this.getStrategy(StaticValues.STRATEGY_DIVIDENDS);
 		double profitShare=strategyDiv.getProfitShare();
+		TargetExpectedInventoriesOutputStrategy strategyProd= (TargetExpectedInventoriesOutputStrategy) this.getStrategy(StaticValues.STRATEGY_PRODUCTION);
+		ProfitsWealthTaxStrategy taxStrategy= (ProfitsWealthTaxStrategy) this.getStrategy(StaticValues.STRATEGY_TAXES);
+		double profitTaxRate=taxStrategy.getProfitTaxRate();
+		double shareInvenstories=strategyProd.getInventoryShare();
+		List<Item> capStocks = this.getItemsStockMatrix(true, StaticValues.SM_CAPGOOD);
+		double capitalAmortization = 0;
+		for(Item c:capStocks){
+			CapitalGood cap = (CapitalGood)c;
+			if(cap.getAge()>=0 && cap.getAge()<cap.getCapitalAmortization())
+				capitalAmortization+=cap.getQuantity()*cap.getPrice()/cap.getCapitalAmortization();
+		}
+		
+		double expectedProfits=expRevenues-(nbWorkers*expWages)+this.interestReceived-this.debtInterests+(shareInvenstories*expRealSales-inv)*uc-capitalAmortization;
+		double expectedTaxes=expectedProfits*profitTaxRate;
+		double expectedDividends=expectedProfits*(1-profitTaxRate)*profitShare;
+		double Inv=this.desiredRealCapitalDemand*((CapitalFirm)this.selectedCapitalGoodSuppliers.get(0)).getPrice();
 		double totalFinancialRequirement=(nbWorkers*expWages)+
-				this.desiredRealCapitalDemand*((CapitalFirm)this.selectedCapitalGoodSuppliers.get(0)).getPrice()+
-				this.debtBurden - this.interestReceived + profitShare * this.getPassedValue(StaticValues.LAG_PROFITAFTERTAX, 1)+(this.shareOfExpIncomeAsDeposit-1)*expRevenues;
+				Inv+
+				this.debtBurden - this.interestReceived + expectedTaxes + expectedDividends-expRevenues+this.shareOfExpIncomeAsDeposit*(nbWorkers*expWages);
 		FinanceStrategy strategy =(FinanceStrategy)this.getStrategy(StaticValues.STRATEGY_FINANCE);
 		this.creditDemanded=strategy.computeCreditDemand(totalFinancialRequirement);
 		if(creditDemanded>0){
@@ -355,5 +392,4 @@ LaborDemander, DepositDemander, PriceSetterWithTargets, ProfitsTaxPayer, Finance
 		}
 		return out.toByteArray();
 	}
-
 }

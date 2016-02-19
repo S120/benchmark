@@ -674,7 +674,7 @@ LaborDemander, DepositDemander, PriceSetterWithTargets, ProfitsTaxPayer, Finance
 			}
 		//Else, the firm defaults
 		}else{
-			System.out.println("Deafault " + this.getAgentId() +" due to debt service");
+			System.out.println("Default " + this.getAgentId() +" due to debt service");
 			this.bankruptcy();
 		}
 	}
