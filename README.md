@@ -1,12 +1,27 @@
-# Java Macro Agent-Based (JMAB) toolkit
+# Java Macro Agent-Based (JMAB) toolkit - "Benchmark" model
 
 Copyright (c) 2016 Alessandro Caiani and Antoine Godin
 
 ##Overview
 
-JMAB is a Java framework for building macro stock-flow consistent agent-based simulation models. A simulation model is constructed using <a href="http://martinfowler.com/articles/injection.html">dependency injection</a> by creating a <a href="https://blog.mafr.de/2007/11/01/configuration-with-spring-beans/">Spring beans</a> configuration file which specifies which classes to use in the simulation and the values of any attributes (parameters). The Spring configuration file is specified using the system property jabm.config.
+The folder contains the model-specific code empolyed for the model presented in the working paper available <a href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2664125"> here</a> , the summary tables of the experiments discussed in the paper, and additional materials to run simulations by your own and analyze results.
+
+The code requires and builds upon the JMAB platform (<a href="https://github.com/S120/jmab">JMAB project</a>): a Java framework for building macro stock-flow consistent agent-based simulation models. A simulation model is constructed using <a href="http://martinfowler.com/articles/injection.html">dependency injection</a> by creating a <a href="https://blog.mafr.de/2007/11/01/configuration-with-spring-beans/">Spring beans</a> configuration file which specifies which classes to use in the simulation and the values of any attributes (parameters). The Spring configuration file is specified using the system property jabm.config.
 
 The main application class is DesktopSimulationManager
+
+##Additional Contents
+
+The folder "paper" contains:
+- The pdf document of the working paper presenting the model
+
+- The Summary Tables with the quasi-SS characterization in the Baseline Scenario and the Sensitivity Experiments discusses in the working paper available <a href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2664125"> here</a> 
+
+- The Summary Tables of the Cross Correlation Analysis in the Baseline and in Each Sensitivity
+
+- All the Plots Produced in the Experiments. In the case of the sensitivity experiments lighter grey lines correspond to higher values of the parameter.
+
+- The Executable Files to run simulations of the benchmark model by your own (in both the Baseline and Sensitivity Scenarios) and the R Scripts required to transform and analyze the results, and plot the figures. (See Read Me doc. in the “Launch Simulations” Folder)
 
 ##Prerequisites
 
