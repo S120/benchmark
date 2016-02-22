@@ -15,7 +15,7 @@ The main application class is DesktopSimulationManager
 The folder "paper" contains:
 - The pdf document of the working paper presenting the model
 
-- The Summary Tables with the quasi-SS characterization in the Baseline Scenario and the Sensitivity Experiments discusses in the working paper available <a href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2664125"> here</a> 
+- The Summary Tables with the quasi-SS characterization in the Baseline Scenario and the Sensitivity Experiments (<a href="https://github.com/S120/benchmark/tree/master/benchmark/paper/Benchmark%20Model%20-%20Similation%20Results"> here</a>) discussed in the working paper available <a href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2664125"> here</a> 
 
 - The Summary Tables of the Cross Correlation Analysis in the Baseline and in Each Sensitivity
 
