@@ -12,6 +12,8 @@ To run the baseline just open your Command Line, change the folder to “Benchma
 You can set the number of Monte Carlo Simulations to be executed by opening the “baseline.prop” file contained in the “Model” folder and specify the desired number of replications (Nmc):
 class net.sourceforge.jabm.DesktopSimulationManagersimulationController.numSimulations=Nmc:1:Nmc
 
+![alt tag](https://cloud.githubusercontent.com/assets/11057808/13379632/dacc762c-de22-11e5-83fc-9a08885a88d1.png)
+
 Once the simulations are completed just open the R script called “Baseline.R”, set the working directory of R to the script folder, and source the script.
 The script will automatically merge the Monte Carlo replications .csv files in a single file for each variable and then produce all the statistics and plots contained in the paper (saved in .ps format). The script requires to have R installed in your PC and the additional Packages: "mFilter", "poweRlaw", "propagate", and "tseries".
 
