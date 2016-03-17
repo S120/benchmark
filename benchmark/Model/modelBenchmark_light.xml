@@ -1548,6 +1548,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="shareOfExpIncomeAsDeposit" value="1"/>
 		<property name="minWageDiscount" value="1"/>
 		<property name="turnoverLabor" ref="turnoverVal"/>
+		<property name="prng" ref="prng" />
 	</bean>
 	
 	<bean id="expSales" class="jmab.expectations.SimpleAdaptiveExpectation"
@@ -1822,10 +1823,8 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="pastNominalSalesId"><util:constant static-field="benchmark.StaticValues.LAG_NOMINALSALES" /> </property>
 	</bean>
 	
-	<bean id="prng" class="cern.jet.random.engine.MersenneTwister64">
-		<constructor-arg>
-			<bean class="java.util.Date" />
-		</constructor-arg>
+	<bean id="prng" class="net.sourceforge.jabm.prng.MersenneTwister">
+		<property name="seed" value="1"/>
 	</bean>
 	
 	<bean id="capitalRDOutcomeStrategy" scope="prototype" parent="strategy"
@@ -2009,7 +2008,8 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="productionStockId"><util:constant static-field="benchmark.StaticValues.SM_CONSGOOD"/> </property>
 		<property name="loanLength" value="20"/>
 		<property name="loanAmortizationType" value="0" />
-		<property name="turnoverLabor" ref="turnoverVal" /> 
+		<property name="turnoverLabor" ref="turnoverVal" />
+		<property name="prng" ref="prng" /> 
 		<property name="shareOfExpIncomeAsDeposit" value="1" />
 		<property name="minWageDiscount" value="1" />
 		
@@ -2835,6 +2835,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="populationId"><util:constant static-field="benchmark.StaticValues.GOVERNMENT_ID" /> </property>
 		<!-- From Government -->
 		<property name="bondMaturity" value="1"/>
+		<property name="prng" ref="prng"/>
 		<property name="bondInterestRate" value="0.0025" />
 		<property name="bondPrice" value="1.0" />
 		<property name="fixedLaborDemand" value="1360" />

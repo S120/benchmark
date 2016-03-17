@@ -17,12 +17,14 @@ package benchmark.agents;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.Collections;
 
+import benchmark.StaticValues;
+import cern.jet.random.engine.RandomEngine;
 import jmab.agents.BondSupplier;
 import jmab.agents.LaborDemander;
 import jmab.agents.LaborSupplier;
 import jmab.agents.LiabilitySupplier;
+import jmab.agents.MacroAgent;
 import jmab.events.MacroTicEvent;
 import jmab.population.MacroPopulation;
 import jmab.stockmatrix.Deposit;
@@ -30,7 +32,7 @@ import jmab.stockmatrix.Item;
 import net.sourceforge.jabm.Population;
 import net.sourceforge.jabm.SimulationController;
 import net.sourceforge.jabm.agent.Agent;
-import benchmark.StaticValues;
+import net.sourceforge.jabm.agent.AgentList;
 
 /**
  * @author Alessandro Caiani and Antoine Godin
@@ -44,12 +46,9 @@ import benchmark.StaticValues;
 @SuppressWarnings("serial")
 public class GovernmentAntiCyclical extends Government implements LaborDemander, BondSupplier{
 	
-	double unemploymentBenefit;
+	protected double unemploymentBenefit;
 	protected double doleExpenditure;
 	protected double profitsFromCB;
-	
-
-
 	
 
 	/**
@@ -145,9 +144,12 @@ public class GovernmentAntiCyclical extends Government implements LaborDemander,
 	@Override
 	protected void computeLaborDemand() {
 		int currentWorkers = this.employees.size();
-		Collections.shuffle(employees);
+		AgentList emplPop = new AgentList();
+		for(MacroAgent ag : this.employees)
+			emplPop.add(ag);
+		emplPop.shuffle(prng);
 		for(int i=0;i<this.turnoverLabor*currentWorkers;i++){
-			fireAgent(employees.get(i));
+			fireAgent((MacroAgent)emplPop.get(i));
 		}
 		cleanEmployeeList();
 		currentWorkers = this.employees.size();
@@ -158,9 +160,12 @@ public class GovernmentAntiCyclical extends Government implements LaborDemander,
 		}else{
 			this.setActive(false, StaticValues.MKT_LABOR);
 			this.laborDemand=0;
-			Collections.shuffle(this.employees);
+			emplPop = new AgentList();
+			for(MacroAgent ag : this.employees)
+				emplPop.add(ag);
+			emplPop.shuffle(prng);
 			for(int i=0;i<currentWorkers-nbWorkers;i++){
-				fireAgent(employees.get(i));
+				fireAgent((MacroAgent)emplPop.get(i));
 			}
 		}
 		cleanEmployeeList();	

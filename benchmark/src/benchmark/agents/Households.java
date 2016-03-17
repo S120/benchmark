@@ -347,23 +347,27 @@ public class Households extends AbstractHousehold implements GoodDemander, Labor
 			TaxPayerStrategy strategy = (TaxPayerStrategy)this.getStrategy(StaticValues.STRATEGY_TAXES);
 			double taxes=strategy.computeTaxes();
 			if(this.isEmployed()){
-			return this.getGrossIncome()-taxes;
+				double grossIncome = this.getGrossIncome();
+				double netIncome= grossIncome-taxes;
+				return netIncome;
 			}
 			else{
-			MacroPopulation macroPop = (MacroPopulation) ((SimulationController)this.scheduler).getPopulation();
-			Population households= (Population) macroPop.getPopulation(StaticValues.HOUSEHOLDS_ID);
-			double averageWage=0;
-			double employed=0;
-			for(Agent agent:households.getAgents()){
-				Households worker= (Households) agent;
-				if (worker.getEmployer()!=null){
-					averageWage+=worker.getWage();
-					employed+=1;
+				MacroPopulation macroPop = (MacroPopulation) ((SimulationController)this.scheduler).getPopulation();
+				Population households= (Population) macroPop.getPopulation(StaticValues.HOUSEHOLDS_ID);
+				double averageWage=0;
+				double employed=0;
+				for(Agent agent:households.getAgents()){
+					Households worker= (Households) agent;
+					if (worker.getEmployer()!=null){
+						averageWage+=worker.getWage();
+						employed+=1;
+					}
 				}
-			}
-			averageWage=averageWage/employed;
-			GovernmentAntiCyclical gov = (GovernmentAntiCyclical)macroPop.getPopulation(StaticValues.GOVERNMENT_ID).getAgentList().get(0);
-			return gov.getUnemploymentBenefit()*averageWage+this.getGrossIncome()-taxes;
+				averageWage=averageWage/employed;
+				GovernmentAntiCyclical gov = (GovernmentAntiCyclical)macroPop.getPopulation(StaticValues.GOVERNMENT_ID).getAgentList().get(0);
+				double grossIncome = gov.getUnemploymentBenefit()*averageWage+this.getGrossIncome();
+				double netIncome= grossIncome-taxes;
+				return netIncome;
 			}
 		//return this.getPassedValue(StaticValues.LAG_INCOME, 1);	
 	}

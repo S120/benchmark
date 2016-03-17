@@ -19,7 +19,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		   <idref local="macroSimulation"/>
 		</property>
 	
-		<property name="numSimulations" value="50"/>	
+		<property name="numSimulations" value="1"/>	
 		
 		<property name="reports">
 			<list>

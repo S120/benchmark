@@ -14,13 +14,13 @@
  */
 package benchmark.agents;
 
-import java.util.Collections;
-
+import benchmark.StaticValues;
 import jmab.agents.BondSupplier;
 import jmab.agents.LaborDemander;
+import jmab.agents.MacroAgent;
 import jmab.events.MacroTicEvent;
 import jmab.stockmatrix.Deposit;
-import benchmark.StaticValues;
+import net.sourceforge.jabm.agent.AgentList;
 
 /**
  * @author Alessandro Caiani and Antoine Godin
@@ -65,9 +65,12 @@ public class Government2WagesEnd extends Government implements LaborDemander, Bo
 	@Override
 	protected void computeLaborDemand() {
 		int currentWorkers = this.employees.size();
-		Collections.shuffle(employees);
+		AgentList emplPop = new AgentList();
+		for(MacroAgent ag : this.employees)
+			emplPop.add(ag);
+		emplPop.shuffle(prng);
 		for(int i=0;i<this.turnoverLabor*currentWorkers;i++){
-			fireAgent(employees.get(i));
+			fireAgent((MacroAgent)emplPop.get(i));
 		}
 		cleanEmployeeList();
 		currentWorkers = this.employees.size();
@@ -78,9 +81,12 @@ public class Government2WagesEnd extends Government implements LaborDemander, Bo
 		}else{
 			this.setActive(false, StaticValues.MKT_LABOR);
 			this.laborDemand=0;
-			Collections.shuffle(this.employees);
+			emplPop = new AgentList();
+			for(MacroAgent ag : this.employees)
+				emplPop.add(ag);
+			emplPop.shuffle(prng);
 			for(int i=0;i<currentWorkers-nbWorkers;i++){
-				fireAgent(employees.get(i));
+				fireAgent((MacroAgent)emplPop.get(i));
 			}
 		}
 		cleanEmployeeList();	

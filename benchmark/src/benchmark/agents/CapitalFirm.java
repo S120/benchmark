@@ -18,9 +18,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
+import benchmark.StaticValues;
+import cern.jet.random.engine.RandomEngine;
 import jmab.agents.AbstractFirm;
 import jmab.agents.CreditDemander;
 import jmab.agents.DepositDemander;
@@ -55,9 +56,9 @@ import jmab.strategies.SelectWorkerStrategy;
 import jmab.strategies.TaxPayerStrategy;
 import jmab.strategies.UpdateInventoriesProductivityStrategy;
 import net.sourceforge.jabm.agent.Agent;
+import net.sourceforge.jabm.agent.AgentList;
 import net.sourceforge.jabm.event.AgentArrivalEvent;
 import net.sourceforge.jabm.event.RoundFinishedEvent;
-import benchmark.StaticValues;
 
 /**
  * Class representing Capital Producers 
@@ -421,9 +422,12 @@ public class CapitalFirm extends AbstractFirm implements GoodSupplier,
 	protected void computeLaborDemand() {
 		
 		int currentWorkers = this.employees.size();
-		Collections.shuffle(employees);
+		AgentList emplPop = new AgentList();
+		for(MacroAgent ag : this.employees)
+			emplPop.add(ag);
+		emplPop.shuffle(prng);
 		for(int i=0;i<this.turnoverLabor*currentWorkers;i++){
-			fireAgent(employees.get(i));
+			fireAgent((MacroAgent)emplPop.get(i));
 		}
 		cleanEmployeeList();
 		currentWorkers = this.employees.size();
@@ -436,9 +440,12 @@ public class CapitalFirm extends AbstractFirm implements GoodSupplier,
 		}else{
 			this.setActive(false, StaticValues.MKT_LABOR);
 			this.laborDemand=0;
-			Collections.shuffle(this.employees);
+			emplPop = new AgentList();
+			for(MacroAgent ag : this.employees)
+				emplPop.add(ag);
+			emplPop.shuffle(prng);
 			for(int i=0;i<currentWorkers-nbWorkers;i++){
-				fireAgent(employees.get(i));
+				fireAgent((MacroAgent)emplPop.get(i));
 			}
 		}
 		if(this.laborDemand>0)
