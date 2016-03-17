@@ -2571,6 +2571,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	class="benchmark.strategies.BankBankruptcyBailoutCAR">
 	<property name="depositId"><util:constant static-field="benchmark.StaticValues.SM_DEP"/></property>
 	<property name="depositExpectationId"><util:constant static-field="benchmark.StaticValues.EXPECTATIONS_DEPOSITS"/></property>
+	<property name="prng" ref="prng"/>
 	</bean>
 	
 	<!-- <bean id="banksBankruptcyStrategy" scope="prototype" parent="strategy"

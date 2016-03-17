@@ -19,6 +19,8 @@ import java.util.List;
 
 import benchmark.StaticValues;
 import benchmark.agents.Bank;
+import cern.jet.random.Uniform;
+import cern.jet.random.engine.RandomEngine;
 import jmab.expectations.Expectation;
 import jmab.population.MacroPopulation;
 import jmab.stockmatrix.Item;
@@ -39,7 +41,8 @@ public class BankBankruptcyBailoutCAR extends AbstractStrategy implements
 	
 //	private int numberBailouts; 
 	private int depositId;
-	private int depositExpectationId; 
+	private int depositExpectationId;
+	protected RandomEngine prng;
 
 	/**
 	 * @return the depositId
@@ -95,7 +98,8 @@ public class BankBankruptcyBailoutCAR extends AbstractStrategy implements
 			if (bank1.getAgentId()!=bank.getAgentId())
 			tot+=bank1.getCapitalRatio();
 			}
-		double car=tot/(banks.getSize()-1)+Math.random()*(0.1);
+		Uniform distribution = new Uniform(0,0.1,prng);
+		double car=tot/(banks.getSize()-1)+distribution.nextDouble();
 		List<Item> loans=bank.getItemsStockMatrix(true, StaticValues.SM_LOAN);
 		double loansValue=0;
 		for (Item a:loans){
@@ -124,6 +128,16 @@ public class BankBankruptcyBailoutCAR extends AbstractStrategy implements
 		
 	}
 	
+
+	public RandomEngine getPrng() {
+		return prng;
+	}
+
+
+	public void setPrng(RandomEngine prng) {
+		this.prng = prng;
+	}
+
 
 	/**
 	 * Generate the byte array structure of the strategy. The structure is as follow:
