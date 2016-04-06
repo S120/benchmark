@@ -9,7 +9,7 @@ To run the baseline just open your Command Line, change the folder to “Benchma
 * Under Windows: launch the Baseline.bat file (some Windows versions allow to launch the .bat file by double clicking on it). 
 * Under Mac OS: launch the Baseline.sh file 
 
-You can set the number of Monte Carlo Simulations to be executed by opening the “baseline.prop” file contained in the “Model” folder and specify the desired number of replications (Nmc):
+You can set the number of Monte Carlo Simulations to be executed by opening the “baseline.prop” file, contained in the “Model” folder, with a text editor and specify the desired number of replications (Nmc):
 class net.sourceforge.jabm.DesktopSimulationManagersimulationController.numSimulations=Nmc:1:Nmc
 
 ![alt tag](https://cloud.githubusercontent.com/assets/11057808/13379632/dacc762c-de22-11e5-83fc-9a08885a88d1.png)
@@ -32,7 +32,7 @@ To set up a sensitivity experiment open the “sensitivity.prop”  file contain
 
 To launch the experiments open your Command Line, change the directory to the “BenchmarkModel_Baseline_Sensitivity” folder, and then launch the 
 
-* the Baseline.bat file - as in the example hereunder - in case you are using Windows OS
+* the Sensitivity.bat file - as in the example hereunder - in case you are using Windows OS
 * the Sensitivity.sh file in case you are using Mac OS .  
 
 Once the simulation have been carried out, open the R script called “Sensitivity.R”, set the working directory of R to the script folder, and source the script. The script requires to have R installed in your PC and the additional Package "mFilter".
