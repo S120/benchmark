@@ -16,7 +16,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 			scope="singleton">
 			
 		<property name="simulationBeanName">
-		   <idref local="macroSimulation"/>
+		   <idref bean="macroSimulation"/>
 		</property>
 	
 		<property name="numSimulations" value="1"/>	
