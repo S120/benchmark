@@ -2,7 +2,7 @@
 
 Copyright (c) 2016 Alessandro Caiani and Antoine Godin
 
-##Overview
+## Overview
 
 The folder contains the model-specific code empolyed for the model presented in the working paper available <a href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2664125"> here</a> , the summary tables of the experiments discussed in the paper, and additional materials to run simulations by your own and analyze results.
 
@@ -10,7 +10,7 @@ The code requires and builds upon the JMAB platform (<a href="https://github.com
 
 The main application class is DesktopSimulationManager
 
-##Additional Contents
+## Additional Contents
 
 The folder "paper" contains:
 - The pdf document of the working paper presenting the model (<a href="https://github.com/S120/benchmark/blob/master/benchmark/paper/BenchmarkModel.pdf"> here</a>)
@@ -23,23 +23,23 @@ The folder "paper" contains:
 
 - The Executable Files to run simulations of the benchmark model by your own (in both the Baseline and Sensitivity Scenarios) and the R Scripts required to transform and analyze the results, and plot the figures. (See Read Me doc. in the “Launch Simulations” Folder). Available <a href="https://github.com/S120/benchmark/tree/master/benchmark/paper/Benchmark%20Model%20-%20Similation%20Results/Launch%20Simulations"> here</a>.
 
-##Prerequisites
+## Prerequisites
 
 JMAB requires Java version 6 or later. It has been tested against version 1.6.0_35 and 1.7.0_75.
 
 Note that on Mac OS, you will need to use the Oracle version of Java instead of the default one shipped with the OS.
 
-##Installation
+## Installation
 
 The project archive can be imported directly into the Eclipse IDE as an existing project.
 
-##Running the examples from the Eclipse IDE
+## Running the examples from the Eclipse IDE
 
 The distribution archive can be imported directly into the Eclipse IDE by using the File/Import menu item. Create a launch configuration in the benchmark project with the main class benchmark.Main and specify which configuration file you want to use by setting the system property jabm.config using the JVM argument -D , for example
 
 -Djabm.config=model/mainBaseline.xml
 
-##Documentation
+## Documentation
 
 The folder documentation in the <a href="https://github.com/S120/jmab">JMAB project</a> contains a user guide.
 
