@@ -1533,7 +1533,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="capitalLaborRatio" value="6.4"/>
 		<property name="shareOfExpIncomeAsDeposit" value="1"/>
 		<property name="minWageDiscount" value="1"/>
-		<property name="turnoverLabor" value="0.05"/>
+		<property name="turnoverLabor" ref="turnoverVal"/>
 		<property name="prng" ref="prng" />
 	</bean>
 	
@@ -1856,14 +1856,22 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	
 	<bean id="capitalTaxesStrategy" scope="prototype" parent="strategy"
 	class="jmab.strategies.ProfitsWealthTaxStrategy">
-	<property name="profitTaxRate" value="0.18" />
+    <property name="profitTaxRate" ref="profitTaxVal" />
 	<property name="wealthTaxRate" value="0"/>
 	<property name="depositId"><util:constant static-field="benchmark.StaticValues.SM_DEP" /> </property>	
 	</bean>
 	
+	<bean id="profitTaxVal" scope="simulation" class="net.sourceforge.jabm.util.MutableDoubleWrapper">
+		<constructor-arg value="0.18" />
+	</bean>
+	
 	<bean id="capitalBankruptcyStrategy" scope="prototype" parent="strategy"
 	class="benchmark.strategies.FirmBankruptcyFireSales">
-	<property name="haircut" value="0.5"/>
+	<property name="haircut" ref="haircutVal"/>
+	</bean>
+	
+	<bean id="haircutVal" scope="simulation" class="net.sourceforge.jabm.util.MutableDoubleWrapper">
+		<constructor-arg value="0.5" />
 	</bean>
 	
 	<bean id="capitalDividendsStrategy" scope="prototype" parent="strategy"
@@ -1986,11 +1994,15 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="productionStockId"><util:constant static-field="benchmark.StaticValues.SM_CONSGOOD"/> </property>
 		<property name="loanLength" value="20"/>
 		<property name="loanAmortizationType" value="0" />
-		<property name="turnoverLabor" value="0.05" /> 
-		<property name="prng" ref="prng" />
+		<property name="turnoverLabor" ref="turnoverVal" />
+		<property name="prng" ref="prng" /> 
 		<property name="shareOfExpIncomeAsDeposit" value="1" />
 		<property name="minWageDiscount" value="1" />
 		
+	</bean>
+	
+	<bean id="turnoverVal" scope="simulation" class="net.sourceforge.jabm.util.MutableDoubleWrapper">
+		<constructor-arg value="0.05" />
 	</bean>
 	
 	<bean id="consumptionMacroStrategy" scope="prototype"
@@ -2142,14 +2154,14 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	
 	<bean id="consumptionTaxesStrategy" scope="prototype" parent="strategy"
 	class="jmab.strategies.ProfitsWealthTaxStrategy">
-	<property name="profitTaxRate" value="0.18" />
-	<property name="wealthTaxRate" value="0"/>
+	<property name="profitTaxRate" ref="profitTaxVal" />
+	<property name="wealthTaxRate" value="0"></property>
 	<property name="depositId"><util:constant static-field="benchmark.StaticValues.SM_DEP" /> </property>	
 	</bean>
 	
 	<bean id="consumptionBankruptcyStrategy" scope="prototype" parent="strategy"
 	class="benchmark.strategies.FirmBankruptcyFireSales">
-	<property name="haircut" value="0.5"/>
+	<property name="haircut" ref="haircutVal" />
 	</bean>
 	
 	<bean id="consumptionDividendsStrategy" scope="prototype" parent="strategy"
@@ -2416,40 +2428,9 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="distribution" ref="foldedNormal1"/>
 		<property name="mktId"><util:constant static-field="benchmark.StaticValues.MKT_CREDIT" /></property>
 		<property name="increase" value="false"/>
-<!-- 		<property name="adaptiveParameter" value="1"/> -->
 		<property name="adaptiveParameter" value="1"/>
 		<property name="threshold" value="0.17995897"/>
 	</bean>
-	
-	<!-- CAR RESERVE REQUIREMENT
-	<bean id="banksAdvancesStrategy" scope="prototype" parent="strategy"
-		class="jmab.strategies.BaselIIIReserveRequirements">
-		<property name="capitalAdequacyRatio" value="0.06"/>
-		<property name="reserveId"><util:constant static-field="benchmark.StaticValues.SM_RESERVES" /> </property>
-		<property name="capitalIds">
-			<list>
-	           <util:constant static-field="benchmark.StaticValues.SM_CASH"/>
-	           <util:constant static-field="benchmark.StaticValues.SM_RESERVES"/>
-	         </list>
-		</property>
-		<property name="assetsIds">
-			<list>
-	           <util:constant static-field="benchmark.StaticValues.SM_LOAN"/>
-	         </list>
-		</property>
-		<property name="capitalsWeights">
-			<list>
-	           <value>1</value>
-	           <value>1</value> 
-	         </list>
-		</property>
-		<property name="assetsWeights">
-			<list>
-	           <value>1</value>
-	         </list>
-		</property>
-	</bean>
-	-->
 	
 	<!-- BLR RESERVE REQUIREMENT-->
 	<bean id="banksAdvancesStrategy" scope="prototype" parent="strategy"
@@ -2467,7 +2448,6 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		</property>
 	</bean>
 	
-	<!-- TODO CHECK IT!-->
 	<bean id="banksFinanceStrategy" scope="prototype" parent="strategy"
 		class="jmab.strategies.PeckingOrderTheory">
 		<property name="stocksId">
@@ -2542,7 +2522,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		class="jmab.strategies.ExpectedReturnCreditSupply">	
 		<property name="loansId"><util:constant static-field="benchmark.StaticValues.SM_LOAN" /> </property>
 		<property name="capitalId"><util:constant static-field="benchmark.StaticValues.SM_CAPGOOD" /> </property>
-		<property name="haircut" value="0.5"/>
+		<property name="haircut" ref="haircutVal"/>
 		<property name="binaryDecision" value="false"/>
 		<property name="defaultComputer" ref="loanDefaultComputer"/>
 	</bean>
@@ -2566,8 +2546,8 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	
 	<bean id="banksTaxesStrategy" scope="prototype" parent="strategy"
 	class="jmab.strategies.ProfitsWealthTaxStrategy">
-	<property name="profitTaxRate" value="0.18" />
-	<property name="wealthTaxRate" value="0"/>
+	<property name="profitTaxRate" ref="profitTaxVal" />
+	<property name="wealthTaxRate" value="0"></property>
 	<property name="depositId"><util:constant static-field="benchmark.StaticValues.SM_RESERVES" /> </property>	
 	</bean>
 	
@@ -2575,6 +2555,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	class="benchmark.strategies.BankBankruptcyBailoutCAR">
 	<property name="depositId"><util:constant static-field="benchmark.StaticValues.SM_DEP"/></property>
 	<property name="depositExpectationId"><util:constant static-field="benchmark.StaticValues.EXPECTATIONS_DEPOSITS"/></property>
+	<property name="prng" ref="prng"/>
 	</bean>
 	
 	<!-- <bean id="banksBankruptcyStrategy" scope="prototype" parent="strategy"
@@ -2843,7 +2824,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 		<property name="prng" ref="prng"/>
 		<property name="bondPrice" value="1.0" />
 		<property name="fixedLaborDemand" value="1360" />
-		<property name="turnoverLabor" value="0.1" /> 
+		<property name="turnoverLabor" ref="turnoverVal" /> 
 		<property name="unemploymentBenefit" value="0.4" />
 		<property name="uComputer" ref="unemploymentComputer"/>
 		<property name="taxedPopulations">
