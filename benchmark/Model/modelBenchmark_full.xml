@@ -176,7 +176,6 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 				<ref bean="FlowNetworkReportTic" />
 				<ref bean="populationHandlerTic" />
 				<ref bean="updateExpectationsTic" />
-				<ref bean="serializationTic" />
 			</list>
 		</property>
 		<property name="simulationController" ref="simulationController" />
