@@ -1436,7 +1436,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	<bean id="capitalFirmsFactory" scope="simulation"
 		class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
 		<property name="targetBeanName">
-			<idref local="capitalFirmPrototype" />
+			<idref bean="capitalFirmPrototype" />
 		</property>
 	</bean>
 	
@@ -1898,7 +1898,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	<bean id="consumptionFirmsFactory" scope="simulation"
 		class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
 		<property name="targetBeanName">
-			<idref local="consumptionFirmPrototype" />
+			<idref bean="consumptionFirmPrototype" />
 		</property>
 	</bean>
 	
@@ -2190,7 +2190,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	<bean id="banksFactory" scope="simulation"
 		class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
 		<property name="targetBeanName">
-			<idref local="bankPrototype" />
+			<idref bean="bankPrototype" />
 		</property>
 	</bean>
 	
@@ -2590,7 +2590,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	<bean id="householdsFactory" scope="simulation"
 		class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
 		<property name="targetBeanName">
-			<idref local="householdPrototype" />
+			<idref bean="householdPrototype" />
 		</property>
 	</bean>
 	
@@ -2782,7 +2782,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	<bean id="governmentsFactory" scope="simulation"
 		class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
 		<property name="targetBeanName">
-			<idref local="governmentPrototype" />
+			<idref bean="governmentPrototype" />
 		</property>
 	</bean>
 	
@@ -2883,7 +2883,7 @@ Caiani, A., Godin, A., Caverzasi, E., Ricetti, L., Russo, A., Gallegati, M., Kin
 	<bean id="centralBanksFactory" scope="simulation"
 		class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
 		<property name="targetBeanName">
-			<idref local="centralBankPrototype" />
+			<idref bean="centralBankPrototype" />
 		</property>
 	</bean>
 	
